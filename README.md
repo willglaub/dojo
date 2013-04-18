@@ -1,4 +1,4 @@
-![dojo - the node.js application server](https://github.com/dcodeIO/dojo/dojo.jpg)
+![dojo - the node.js application server](https://raw.github.com/dcodeIO/dojo/master/dojo.png)
 ======================================
 Ever thought about enrolling at a dojo? Do you already know or want to learn some jitsu? Then dojo is for you.
 
