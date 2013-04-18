@@ -1,6 +1,8 @@
-![dojo - the node.js application server](https://raw.github.com/dcodeIO/dojo/master/dojo.png)
-======================================
-Ever thought about enrolling at a dojo? Do you already know or want to learn some jitsu? Then dojo is for you.
+<h1 align="center">
+    ![dojo - the node.js application server](https://raw.github.com/dcodeIO/dojo/master/dojo.png)
+</h1>
+
+**Ever thought about enrolling at a dojo?** Do you already know or want to learn some jitsu? Then dojo is for you.
 
 dojo is an application server built on top of the node.js ecosystem. Its philosophy is to create a full-featured
 application server using first-class open-source packages that are available on npm. It comes with a simple to use API
