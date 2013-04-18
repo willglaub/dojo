@@ -22,7 +22,7 @@ command line tool.
 Easy to use API wrapper for dojo-d's API.
 
 #### [dojo-db](https://npmjs.org/package/dojo-db)
-A database inspired by mongoDB, implemented on top of node.js.
+A database server inspired by mongoDB, implemented on top of node.js.
 
 #### [dojo](https://npmjs.org/package/dojo)
 Compound package of dojo, including all of the above as a single easy to use package. Also reduces redundant
@@ -55,6 +55,13 @@ As for now, dojo builds on the following first class packages available on npm:
 
   A Java-like, Netty-inspired ByteBuffer implementation using typed arrays.
   
+Current state
+-------------
+Still screwing together the parts.
+<p align="center">
+    <img src="https://raw.github.com/dcodeIO/dojo/master/preview.jpg" alt="dojo-cli preview" />
+</p>
+  
 On "dojo"
 ---------
 dojo is not affiliated by nor endored with The Dojo Foundation. We believe that a meaningful naming is a key to a
@@ -66,4 +73,4 @@ License
 -------
 All of dojo's packages are licensed under the Apache License, Version 2.0 and may be used for free, personally and
 commercially. However, if dojo is useful for you or your company, please consider supporting us so that we are able
-to continue making dojo even better and easier to use. [Contact us]!
+to continue making dojo even better and easier to use. [Contact us](mailto:dcode@dcode.io)!
