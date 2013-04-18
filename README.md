@@ -1,5 +1,5 @@
 <h1 align="center">
-    ![dojo - the node.js application server](https://raw.github.com/dcodeIO/dojo/master/dojo.png)
+    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo.png" alt="dojo - the node.js application server" />
 </h1>
 
 **Ever thought about enrolling at a dojo?** Do you already know or want to learn some jitsu? Then dojo is for you.
