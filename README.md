@@ -28,18 +28,18 @@ dependencies.
 
 As for now, dojo builds on the following first class packages available on npm:
 
-* [haibu](https://npmjs.org/package/haibu) by nodejitsu
+* [haibu](https://npmjs.org/package/haibu) by nodejitsu 
   A node.js application server - spawn your own node.js clouds, on your own hardware. dojo currently uses a custom build
   of haibu that fixes some problems, especially on the windows platform.
-* [request](https://npmjs.org/package/request) by Mikeal Rogers
+* [request](https://npmjs.org/package/request) by Mikeal Rogers 
   A simplified HTTP request client.
-* [bcrypt-nodejs](https://npmjs.org/package/bcrypt-nodejs) by Shane Girish
+* [bcrypt-nodejs](https://npmjs.org/package/bcrypt-nodejs) by Shane Girish 
   A native JS bcrypt library for NodeJS.
-* [daemonize2](https://npmjs.org/package/daemonize2) by Kuba Niegowski
+* [daemonize2](https://npmjs.org/package/daemonize2) by Kuba Niegowski 
   Module for easy creation of daemons for Node 0.8.x.
-* [jugglingdb](https://npmjs.org/package/jugglingdb) by Anatoliy Chakkaev
+* [jugglingdb](https://npmjs.org/package/jugglingdb) by Anatoliy Chakkaev 
   ORM for every database: redis, mysql, neo4j, mongodb, couchdb, postgres, sqlite
-* [ByteBuffer.js)(https://npmjs.org/package/bytebuffer)
+* [ByteBuffer.js](https://npmjs.org/package/bytebuffer) 
   A Java-like, Netty-inspired ByteBuffer implementation using typed arrays.
   
 On "dojo"
