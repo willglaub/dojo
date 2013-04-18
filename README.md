@@ -55,6 +55,11 @@ As for now, dojo builds on the following first class packages available on npm:
 
   A Java-like, Netty-inspired ByteBuffer implementation using typed arrays.
   
+If dojo actually uses a dependency this is always for a good reason. Usually, node.js provides most of the required
+functionality out of the box so if a library is used in dojo, it's considered pretty lean and stable by us. As a result
+you won't end up downloading hundreds of partly redundant dependencies when installing dojo. Unfortunately, that's not
+the philosophy used in haibu, but we are ok with that as it's really a one of a kind app.
+
 Current state
 -------------
 Still screwing together the parts.
