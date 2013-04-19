@@ -73,15 +73,10 @@ Still screwing together the parts.
     <img src="https://raw.github.com/dcodeIO/dojo/master/preview.jpg" alt="dojo-cli preview" />
 </p>
   
-On "dojo"
----------
-dojo is not affiliated by nor endored with The Dojo Foundation. We believe that a meaningful naming is a key to a
-project's success and therefor picked the naming that best resembles what our product stands for. dojo does not
-conflict with The Dojo Toolkit, which is a client-side framework, so we are quite ok with that and hope that our
-valuable colleagues at The Dojo Foundation are also. Keep up the good work, pals!
-
 License
 -------
 All of dojo's packages are licensed under the Apache License, Version 2.0 and may be used for free, personally and
 commercially. However, if dojo is useful for you or your company, please consider supporting us so that we are able
 to continue making dojo even better and easier to use. [Contact us](mailto:dcode@dcode.io)!
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dcodeIO/dojo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
