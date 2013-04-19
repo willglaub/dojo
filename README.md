@@ -24,6 +24,12 @@ Easy to use API wrapper for dojo-d's API.
 #### [dojo-db](https://npmjs.org/package/dojo-db)
 A database server inspired by mongoDB, implemented on top of node.js.
 
+#### [dojo-test](https://npmjs.org/package/dojo-test)
+Test [à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test).
+
+#### [dojo-common](https://npmjs.org/package/dojo-common)
+Basic utilities shared between packages.
+
 #### [dojo](https://npmjs.org/package/dojo)
 Compound package of dojo, including all of the above as a single easy to use package. Also reduces redundant
 dependencies.

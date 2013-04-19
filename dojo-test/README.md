@@ -1,6 +1,6 @@
 dojo-test
 ---------
-Test à la [dojo]((https://github.com/dcodeIO/dojo)), the node.js application server. Prints nothing else than the
+Test à la [dojo](https://github.com/dcodeIO/dojo), the node.js application server. Prints nothing else than the
 information you actually need and does nothing more than wrapping node's assert module.
 
 * Syntax inspired by [nodeunit](https://npmjs.org/package/nodeunit)

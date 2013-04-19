@@ -11,7 +11,7 @@ if (process.argv.length < 3) {
 }
 var suite;
 try {
-    suite = require(file);
+    suite = require(file); // may be a runner on it's own
 } catch (e) {
     process.stderr.write(Suite.banner);
     common.fail("File not found: "+file, "test");

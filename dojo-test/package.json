@@ -1,15 +1,25 @@
 {
     "name": "dojo-test",
-    "description": "Lightweight test runner for dojo, the node.js application server.",
+    "description": "Test à la dojo, the node.js application server.",
     "version": "0.1.0",
     "author": "Daniel Wirtz <dcode@dcode.io>",
-    "main": "test.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dcodeIO/dojo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dcodeIO/dojo/issues"
+    },
+    "main": "./test.js",
     "bin": {
-        "test": "bin/test",
-        "aladojo": "bin/aladojo"
+        "test": "./bin/test",
+        "aladojo": "./bin/aladojo"
     },
     "dependencies": {
         "dojo-common": "0.1.x"
     },
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "scripts": {
+        "test": "aladojo"
+    }
 }
