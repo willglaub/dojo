@@ -11,7 +11,7 @@ information you actually need and does nothing more than wrapping node's assert 
 * API and Cli (just `test`, or `aladojo` if you are feeling culinarily)
 
 <p align="center">
-    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.png" alt="test à la dojo" />
+    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.jpg" alt="test à la dojo" />
 </p>
 
 Self-explaining examples
