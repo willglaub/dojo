@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+var path = require("path"),
+    Suite = require(path.join(__dirname, '..', 'test.js')),
+    common = require(path.join(__dirname, '..', 'common.js'));
+
+var file;
+if (process.argv.length < 3) {
+    file = path.resolve("tests", "suite.js");
+} else {
+    file = path.resolve(process.argv[2]);
+}
+var suite;
+try {
+    suite = require(file);
+} catch (e) {
+    process.stderr.write(Suite.banner);
+    common.fail("File not found: "+file, "test");
+}
+Suite.run(suite);

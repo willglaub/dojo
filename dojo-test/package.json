@@ -1,0 +1,15 @@
+{
+    "name": "dojo-test",
+    "description": "Lightweight test runner for dojo, the node.js application server.",
+    "version": "0.1.0",
+    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "main": "test.js",
+    "bin": {
+        "test": "bin/test",
+        "aladojo": "bin/aladojo"
+    },
+    "dependencies": {
+        "dojo-common": "0.1.x"
+    },
+    "license": "Apache-2.0"
+}
