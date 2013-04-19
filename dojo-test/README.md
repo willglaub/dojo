@@ -14,6 +14,23 @@ information you actually need and does nothing more than wrapping node's assert 
     <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.jpg" alt="test à la dojo" />
 </p>
 
+Recommended usage
+-----------------
+In package.json:
+```javascript
+...
+{
+    "devDependencies": {
+        "dojo-test": "latest"
+    },
+    "scripts": {
+        "test": "aladojo"
+    }
+}
+...
+```
+`npm test`
+
 Self-explaining examples
 ------------------------
 * [test run](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/run.js)
