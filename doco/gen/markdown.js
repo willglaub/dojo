@@ -12,13 +12,13 @@ module.exports = function(comments){
             console.log(comment);
         }
         buf.push('### ' + context(comment));
-        buf.push('');
-        buf.push(desc.full.trim().replace(/^/gm, '  '));
-        if (comment.tags && comment.tags.length > 0) {
+        if (desc.full) {
+            buf.push(desc.full.trim().replace(/^/gm, '  '));
             buf.push('');
+        }
+        if (comment.tags && comment.tags.length > 0) {
             buf.push(paramstable(comment.tags));
         }
-        buf.push('');
     });
 
     buf = buf
@@ -88,7 +88,7 @@ function paramstable(tags) {
     if (params.length == 0 && returns.length == 0 && throws.length == 0) {
         return "";
     }
-    var spacer = "| |||\n";
+    var spacer = "|   |||\n";
     var tbl = "| Name | Type | Description |\n"+
               "| ---- | ---- | ----------- |\n";
     if (params.length > 0) {

@@ -27,6 +27,47 @@ headers and footers to apply your own stylings, e.g.:
 #### Creating custom generators
 Take a look at the generators available in the `gen/` directory. It's pretty straight forward.
 
+API (generated with doco)
+-------------------------
+```javascript
+var doco = require("doco");
+...
+```
+
+## doco
+
+  - [doco](#doco)
+  - [doco.dox](#docodox)
+  - [doco.marked](#docomarked)
+  - [doco.gen](#docogen)
+  - [doco.doco(source, gen\*)](#docodocosource-gen)
+
+### doco
+doco namespace.
+
+
+### doco.dox
+Bundled / modified dox.
+
+
+### doco.marked
+Bundled / modified marked.
+
+
+### doco.gen
+Available generators inside the `gen/` folder.
+
+
+### doco.doco(source, gen\*)
+Parses a source and returns the generated doco.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| source | string | Source contents |
+| gen\* | (string &#166; function(Array):string) | Generator to use. May be the name of a generator or a generator function. |
+|   |||
+| **returns** | string | Generated doco
+
 Examples
 --------
 * [dojo-bcrypt json](https://github.com/dcodeIO/dojo/tree/master/doco/tests/bcrypt.json)
