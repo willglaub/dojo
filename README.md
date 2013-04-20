@@ -30,6 +30,9 @@ Test [à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test).
 #### [dojo-common](https://npmjs.org/package/dojo-common)
 Basic utilities shared between packages.
 
+#### [dojo-bcrypt](https://npmjs.org/package/dojo-bcrypt)
+Optimized native bcrypt with zero dependencies. 100% typed code. Fully compatible to 'bcrypt'.
+
 #### [dojo](https://npmjs.org/package/dojo)
 Compound package of dojo, including all of the above as a single easy to use package. Also reduces redundant
 dependencies.
@@ -40,15 +43,7 @@ As for now, dojo builds on the following first class packages available on npm:
 
   Spawn your own node.js clouds, on your own hardware. dojo currently uses a custom build of haibu that fixes some
   problems, especially on the windows platform.
-  
-* [request](https://npmjs.org/package/request) by Mikeal Rogers
-
-  A simplified HTTP request client.
-  
-* [bcrypt-nodejs](https://npmjs.org/package/bcrypt-nodejs) by Shane Girish
-
-  A native JS bcrypt library for NodeJS.
-  
+   
 * [daemonize2](https://npmjs.org/package/daemonize2) by Kuba Niegowski
 
   Module for easy creation of daemons for Node 0.8.x.
