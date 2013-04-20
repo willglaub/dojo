@@ -1,18 +1,18 @@
 <a name="doco"></a><h2>doco</h2>
 <ul>
 <li><a href="#bcrypt">bcrypt</a></li>
-<li><a href="#bcrypt-genSaltSync-rounds-seed_length">bcrypt.genSaltSync(rounds*, seed_length*)</a></li>
-<li><a href="#bcrypt-genSalt-rounds-seed_length-callback">bcrypt.genSalt(rounds*, seed_length*, callback*)</a></li>
-<li><a href="#bcrypt-hashSync-s-salt">bcrypt.hashSync(s, salt*)</a></li>
-<li><a href="#bcrypt-hash-s-salt-callback">bcrypt.hash(s, salt, callback)</a></li>
-<li><a href="#bcrypt-compareSync-s-hash">bcrypt.compareSync(s, hash)</a></li>
-<li><a href="#bcrypt-compare-s-hash-callback">bcrypt.compare(s, hash, callback)</a></li>
-<li><a href="#bcrypt-getRounds-hash">bcrypt.getRounds(hash)</a></li>
-<li><a href="#bcrypt-getSalt-hash">bcrypt.getSalt(hash)</a></li>
+<li><a href="#bcryptgensaltsyncroundsseed_length">bcrypt.genSaltSync(rounds*, seed_length*)</a></li>
+<li><a href="#bcryptgensaltroundsseed_lengthcallback">bcrypt.genSalt(rounds*, seed_length*, callback*)</a></li>
+<li><a href="#bcrypthashsyncssalt">bcrypt.hashSync(s, salt*)</a></li>
+<li><a href="#bcrypthashssaltcallback">bcrypt.hash(s, salt, callback)</a></li>
+<li><a href="#bcryptcomparesyncshash">bcrypt.compareSync(s, hash)</a></li>
+<li><a href="#bcryptcompareshashcallback">bcrypt.compare(s, hash, callback)</a></li>
+<li><a href="#bcryptgetroundshash">bcrypt.getRounds(hash)</a></li>
+<li><a href="#bcryptgetsalthash">bcrypt.getSalt(hash)</a></li>
 </ul>
 <a name="bcrypt"></a><h3>bcrypt</h3>
 <p>bcrypt namespace.</p>
-<a name="bcrypt-genSaltSync-rounds-seed_length"></a><h3>bcrypt.genSaltSync(rounds*, seed_length*)</h3>
+<a name="bcryptgensaltsyncroundsseed_length"></a><h3>bcrypt.genSaltSync(rounds*, seed_length*)</h3>
 <p>Synchronously generates a salt.</p>
 <table>
 <thead>
@@ -40,7 +40,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-genSalt-rounds-seed_length-callback"></a><h3>bcrypt.genSalt(rounds*, seed_length*, callback*)</h3>
+<a name="bcryptgensaltroundsseed_lengthcallback"></a><h3>bcrypt.genSalt(rounds*, seed_length*, callback*)</h3>
 <p>Asynchronously generates a salt.</p>
 <table>
 <thead>
@@ -68,7 +68,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-hashSync-s-salt"></a><h3>bcrypt.hashSync(s, salt*)</h3>
+<a name="bcrypthashsyncssalt"></a><h3>bcrypt.hashSync(s, salt*)</h3>
 <p>Synchronously generates a hash for the given string.</p>
 <table>
 <thead>
@@ -96,7 +96,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-hash-s-salt-callback"></a><h3>bcrypt.hash(s, salt, callback)</h3>
+<a name="bcrypthashssaltcallback"></a><h3>bcrypt.hash(s, salt, callback)</h3>
 <p>Asynchronously generates a hash for the given string.</p>
 <table>
 <thead>
@@ -124,7 +124,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-compareSync-s-hash"></a><h3>bcrypt.compareSync(s, hash)</h3>
+<a name="bcryptcomparesyncshash"></a><h3>bcrypt.compareSync(s, hash)</h3>
 <p>Synchronously tests a string against a hash.</p>
 <table>
 <thead>
@@ -152,7 +152,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-compare-s-hash-callback"></a><h3>bcrypt.compare(s, hash, callback)</h3>
+<a name="bcryptcompareshashcallback"></a><h3>bcrypt.compare(s, hash, callback)</h3>
 <p>Asynchronously compares the given data against the given hash.</p>
 <table>
 <thead>
@@ -180,7 +180,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-getRounds-hash"></a><h3>bcrypt.getRounds(hash)</h3>
+<a name="bcryptgetroundshash"></a><h3>bcrypt.getRounds(hash)</h3>
 <p>Gets the number of rounds used to encrypt the specified hash.</p>
 <table>
 <thead>
@@ -203,7 +203,7 @@
 </tr>
 </tbody>
 </table>
-<a name="bcrypt-getSalt-hash"></a><h3>bcrypt.getSalt(hash)</h3>
+<a name="bcryptgetsalthash"></a><h3>bcrypt.getSalt(hash)</h3>
 <p>Gets the salt from a hash.</p>
 <table>
 <thead>

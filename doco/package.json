@@ -11,5 +11,8 @@
         "dojo-common": "0.1.x"
     },
     "devDependencies": {},
+    "scripts": {
+        "test": "node bin/doco < tests/bcrypt.js > tests/bcrypt.json && node bin/doco --gen=markdown < tests/bcrypt.js > tests/bcrypt.md && node bin/doco --gen=html < tests/bcrypt.js > tests/bcrypt.html"
+    },
     "license": "Apache-2.0"
 }

@@ -810,11 +810,8 @@
     /**
      * Strip HTML
      */
-    Parser.prototype.parseAnchor = function(s) {
-        return s.replace(/<(?:.|\s)*?>/g, "")      // Strip HTML
-            .replace(/&(#[\d]+|[\w]+);/g, "-") // Replace entities with "-"
-            .replace(/[^\w\d_\-]+/g, "-")      // Convert non alphanumeric characters to "-"
-            .replace(/^[\-]+|[\-]+$/g, "");    // Strip leading/trailing "-"
+    Parser.prototype.parseAnchor = function(str) {
+        return str.replace(/\W+/g, '').toLowerCase();
     };
 
     /**
