@@ -3,12 +3,23 @@
     "description": "Common utilities for dojo, the node.js application server.",
     "version": "0.1.0",
     "author": "Daniel Wirtz <dcode@dcode.io>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dcodeIO/dojo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dcodeIO/dojo/issues"
+    },
+    "keywords": [
+        "dojo"
+    ],
     "main": "./common.js",
     "dependencies": {
+        "dojo-bcrypt": "0.1.x"
     },
     "devDependencies": {
         "dojo-test": "0.1.x",
-        "dojo-bcrypt": "0.1.x"
+        "doco": "0.1.x"
     },
     "license": "Apache-2.0"
 }

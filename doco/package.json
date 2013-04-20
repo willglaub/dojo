@@ -3,6 +3,21 @@
     "description": "The JavaScript documentation generator used in dojo, the node.js application server.",
     "version": "0.1.0",
     "author": "Daniel Wirtz <dcode@dcode.io>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dcodeIO/dojo.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dcodeIO/dojo/issues"
+    },
+    "keywords": [
+        "documentation",
+        "markdown",
+        "jsdoc",
+        "dox",
+        "dojo",
+        "doco"
+    ],
     "main": "./doco.js",
     "bin": {
         "doco": "./bin/doco"
