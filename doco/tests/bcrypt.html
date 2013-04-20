@@ -34,7 +34,12 @@
 <td>Not supported.</td>
 </tr>
 <tr>
-<td><strong>returns:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>returns</strong></td>
 <td>string</td>
 <td>Resulting salt</td>
 </tr>
@@ -90,7 +95,12 @@
 <td>Salt length to generate or salt to use, default to 10</td>
 </tr>
 <tr>
-<td><strong>returns:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>returns</strong></td>
 <td>?string</td>
 <td>Resulting hash, actually never null</td>
 </tr>
@@ -146,9 +156,19 @@
 <td>Hash to test against</td>
 </tr>
 <tr>
-<td><strong>returns:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>returns</strong></td>
 <td>boolean</td>
 <td>true if matching, otherwise false</td>
+</tr>
+<tr>
+<td><strong>throws</strong></td>
+<td>Error</td>
+<td>If an argument is illegal</td>
 </tr>
 </tbody>
 </table>
@@ -178,6 +198,16 @@
 <td>function(Error, boolean)</td>
 <td>Callback receiving the error, if any, otherwise the result</td>
 </tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>throws</strong></td>
+<td>Error</td>
+<td>If the callback argument is invalid</td>
+</tr>
 </tbody>
 </table>
 <a name="bcryptgetroundshash"></a><h3>bcrypt.getRounds(hash)</h3>
@@ -197,9 +227,19 @@
 <td>Hash to extract the used number of rounds from</td>
 </tr>
 <tr>
-<td><strong>returns:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>returns</strong></td>
 <td>number</td>
 <td>Number of rounds used</td>
+</tr>
+<tr>
+<td><strong>throws</strong></td>
+<td>Error</td>
+<td>If hash is not a string</td>
 </tr>
 </tbody>
 </table>
@@ -220,8 +260,18 @@
 <td>Hash to extract the salt from</td>
 </tr>
 <tr>
-<td><strong>returns:</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>returns</strong></td>
 <td>string</td>
+</tr>
+<tr>
+<td><strong>throws</strong></td>
+<td>Error</td>
+<td>If hash is not a string or otherwise invalid</td>
 </tr>
 </tbody>
 </table>

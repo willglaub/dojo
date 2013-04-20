@@ -82,19 +82,34 @@ function paramstable(tags) {
     var returns = tags.filter(function(tag) {
         return tag.type == 'returns';
     });
-    if (params.length == 0 && returns.length == 0) {
+    var throws = tags.filter(function(tag) {
+        return tag.type == 'throws';
+    });
+    if (params.length == 0 && returns.length == 0 && throws.length == 0) {
         return "";
     }
+    var spacer = "| | | |\n";
     var tbl = "| Name | Type | Description |\n"+
               "| ---- | ---- | ----------- |\n";
     if (params.length > 0) {
         tbl += params.map(function(param) {
-            return "| "+param.name+(param.optional ? '*' : '')+" | "+param.types.join(" | ").replace("|", "&#166;")+" | "+param.description.replace("|", "&#166;")+" |";
+            return "| "+param.name+(param.optional ? '\\*' : '')+" | "+param.types.join(" | ").replace("|", "&#166;")+" | "+param.description.replace("|", "&#166;")+" |";
         }).join('\n')+'\n';
     }
     if (returns.length > 0) {
+        if (params.length > 0) {
+            tbl += spacer;
+        }
         tbl += returns.map(function(param) {
-            return "| **returns:** | "+param.types.join(" | ").replace("|", "&#166;")+" | "+param.description;
+            return "| **returns** | "+param.types.join(" | ").replace("|", "&#166;")+" | "+param.description;
+        }).join('\n')+'\n';
+    }
+    if (throws.length > 0) {
+        if (params.length > 0 && returns.length == 0) {
+            tbl += spacer;
+        }
+        tbl += throws.map(function(param) {
+            return "| **throws** | "+param.types.join(" | ").replace("|", "&#166;")+" | "+param.description;
         }).join('\n')+'\n';
     }
     return tbl;

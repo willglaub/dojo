@@ -25,7 +25,7 @@ headers and footers to apply your own stylings, e.g.:
 `cat header.html > docs.html && doco -gen=html < sourcefile.js >> docs.html && cat footer.html >> docs.html`
 
 #### Creating custom generators
-Take a look at the generators available at the `gen/` directory. It's pretty straight forward.
+Take a look at the generators available in the `gen/` directory. It's pretty straight forward.
 
 Examples
 --------
