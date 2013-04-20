@@ -10,5 +10,8 @@
     "devDependencies": {
         "dojo-test": "0.1.x"
     },
+    "scripts": {
+        "test": "node tests/suite.js"
+    },
     "license": "Apache-2.0"
 }

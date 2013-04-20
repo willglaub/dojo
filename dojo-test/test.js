@@ -90,7 +90,7 @@ var Suite = function(tests, name, parent) {
     /** @type {Object.<string,*>} */
     this.tests = tests;
     /** @type {String} */
-    this.name = typeof test != 'undefined' ? name : "main";
+    this.name = typeof name != 'undefined' ? name : "suite";
     /** @type {Suite} */
     this.parent = parent instanceof Suite ? parent : null;
     /** @type {{ name: String, test: function(Test) }} */
@@ -107,17 +107,17 @@ Suite.banner = banner;
 /**
  * Runs some tests.
  * @param {Object.<string, (function(Suite)|Object.<string, function(Suite)>)>} tests
+ * @param {string=} name
  * @expose
  */
-Suite.run = function(tests) {
-    var suite = new Suite(tests);
+Suite.run = function(tests, name) {
+    var suite = new Suite(tests, name);
     process.stdout.write(banner);
     suite.onDone = function() {
-        process.stdout.write('\n');
         var total = suite.ok.length + suite.failed.length,
             taken = Date.now() - time;
         if (suite.failed.length > 0) {
-            fail(suite.failed.length+" of "+total+" failed", 'test');
+            fail(suite.failed.length+" of "+total+" failed ("+taken+" ms)", 'test', suite.failed.length);
         } else {
             ok(total+" tests ("+taken+" ms)", 'test');
         }
@@ -172,7 +172,7 @@ Suite.prototype.run = function() {
             }
         }
     }
-    lineUp('suite', this.tests);
+    lineUp(this.name, this.tests);
 
     /**
      * Generates some right-aligned stats.
@@ -204,7 +204,7 @@ Suite.prototype.run = function() {
          * Called when a test is done. May be asynchronous.
          */
         function done() {
-            process.stdout.write(" +".green+" "+test['name']+stats(this, Date.now() - time)+'\n');
+            process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, Date.now() - time)+'\n');
             suite.ok.push(test);
             process.nextTick(next);
         }
@@ -263,15 +263,14 @@ for (var i in assert) {
 }
 
 /**
- * Tests if a value evaluates to true.
- * @function
+ * Tests if a value evaluates to false.
  * @param {*} value Value
  * @param {string=} message Message
  * @throws {Error}
  */
-Test.prototype.ok = function(value, message) {
+Test.prototype.notOk = function(value, message) {
     this.count++;
-    assert.apply(this, arguments);
+    if (!!value) assert.fail(value, true, message, '!=', assert.ok);
 };
 
 /**

@@ -25,7 +25,7 @@ module.exports = {
     },
     
     'notStrictEqual': function(test) {
-        test.notStrictEqual(true, true);
+        test.notStrictEqual(true, true); // Let it throw to actually test the error output :-)
         test.done();
     },
     
@@ -53,6 +53,11 @@ module.exports = {
     "nested": {
         "ok": function(test) {
             test.ok(true);
+            test.done();
+        },
+        
+        "notOk": function(test) {
+            test.notOk(false);
             test.done();
         }
     },

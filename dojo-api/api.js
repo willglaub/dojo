@@ -25,29 +25,32 @@ var path = require("path"),
     url = require("url"),
     querystring = require("querystring"),
     http = require("http"),
+    https = require("https"),
     
 // dojo
     pkg = require(path.join(__dirname, 'package.json')),
     common = require(path.join(__dirname, 'common.js')),
     
 // dojo common
-    bcrypt = common.bcrypt,
-    request = common.request;
+    bcrypt = common.bcrypt;
 
 /**
  * Constructs a new Client.
  * @class Simple API wrapper for dojo, the node.js application server.
- * @param {string} url URL to connect to
+ * @param {string} connectUrl URL to connect to
  * @constructor
  */
-function Client(url) {
-    if (!/^[\w]+:\/\//.test(url)) {
-        url = "http://"+url;
+function Client(connectUrl) {
+    if (!/^[\w]+:\/\//.test(connectUrl)) {
+        url = "http://"+connectUrl;
     }
-    if (url.charAt(url.length-1) == '/') {
-        url = url.substring(0, url.length-1);
+    if (connectUrl.charAt(connectUrl.length-1) == '/') {
+        connectUrl = connectUrl.substring(0, connectUrl.length-1);
     }
-    this.url = url;
+    var urlp = url.parse(connectUrl);
+    this.protocol = urlp['protocol'];
+    this.hostname = urlp['hostname'];
+    this.port = urlp['port'] ? parseInt(urlp['port'], 10) : (this.protocol == 'https:' ? 443 : 80);
     this.name = null;
     this.password = null;
     this.token = null;
@@ -67,20 +70,43 @@ Client.prototype.call = function(method, path, data, callback) {
         }
         data = null;
     }
-    request({
+    var body = JSON.stringify(data);
+    var req = (this.protocol == 'https:' ? https : http).request({
         'method': method,
-        'url': this.url+path,
-        'json': data,
-        'auth': this.token !== null ? {
-            'user': this.name,
-            'password': this.token
-        } : null
-    }, function(err, res, body) {
-        if (res.statusCode != 200 && !err) {
-            err = new Error(res.statusCode+' '+http.STATUS_CODES[res.statusCode]);
+        'path': path,
+        'hostname': this.hostname,
+        'port': this.port,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(body),
+            'User-Agent': pkg['name']+' '+pkg['version']
+        },
+        'auth': this.token !== null ? this.name+':'+this.token : null
+    }, function(res) {
+        if (res.statusCode != 200) {
+            callback(new Error(res.statusCode+' '+http.STATUS_CODES[res.statusCode]), null);
+            return;
         }
-        callback(err, err ? null : (typeof body == 'string' ? JSON.parse(body) : body));
+        var body = '', err = null;
+        res.on('data', function(chunk) {
+            body += chunk;
+        });
+        res.on('error', function(e) {
+            err = e;
+            callback(err, null);
+        });
+        res.on('end', function() {
+            if (err === null) {
+                callback(null, body.length > 0 ? JSON.parse(body) : {});
+            }
+        });
     });
+    req.on('error', function(err) {
+        console.log(err);
+        callback(err, null);
+    });
+    req.write(body);
+    req.end();
 };
 
 /**
@@ -139,18 +165,30 @@ Client.prototype.put = function(path, data, callback) {
  */
 Client.prototype.login = function(name, password, callback) {
     this.name = name;
-    this.password = bcrypt.hashSync(password, bcrypt.genSaltSync());
-    this.post("/login", { 'name': this.name, 'password': this.password }, function(err, res) {
+    bcrypt.genSalt(10, function(err, salt) {
         if (err) {
-            callback(err, res);
-        } else {
-            if (res['token']) {
-                this.token = res['token'];
-                callback(null, res);
-            } else {
-                callback(new Error("Missing API token"), res);
-            }
+            callback(err, null);
+            return;
         }
+        bcrypt.hash(this.name, salt, function(err, hash) {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+            this.password = hash;
+            this.post("/login", { 'name': this.name, 'password': this.password }, function(err, res) {
+                if (err) {
+                    callback(err, res);
+                    return;
+                }
+                if (res['token']) {
+                    this.token = res['token'];
+                    callback(null, res);
+                } else {
+                    callback(new Error("Missing API token"), res);
+                }
+            }.bind(this));
+        }.bind(this));
     }.bind(this));
 };
 

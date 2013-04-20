@@ -1,3 +1,23 @@
-var path = require("path");
+#!/usr/bin/env node
 
-require(path.join(__dirname, 'test'));
+// core
+var path = require("path"),
+    
+// dojo
+    common = require(path.join(__dirname, '..', 'common.js')),
+    Suite = require(path.join(__dirname, '..', 'test.js'));
+
+var file;
+if (process.argv.length < 3) {
+    file = path.resolve("tests", "suite.js");
+} else {
+    file = path.resolve(process.argv[2]);
+}
+var suite;
+try {
+    suite = require(file); // may be a runner on it's own, returning {}
+} catch (e) {
+    process.stderr.write(Suite.banner);
+    common.fail("File not found: "+file, "test");
+}
+if (Object.keys(suite).length > 0) Suite.run(suite, path.basename(file).replace(/\.js$/, ''));
