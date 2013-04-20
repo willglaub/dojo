@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+// core
+var path = require("path"),
+    util = require("util"),
+    
+// dojo
+    common = require(path.join(__dirname, "..", "common.js")),
+    doco = require(path.join(__dirname, "..", "doco.js")),
+    
+// bundled
+    dox = doco.dox;
+
+// Process command line arguments
+var getopt = common.getopt(process.argv);
+var argv = getopt['argv']; // argv unshifted by 2
+var opt = getopt['opt']; // options
+
+var generator = "json";
+if (typeof opt['gen'] == 'string') {
+    generator = opt["gen"];
+}
+
+process.stdin.setEncoding('utf8');
+
+var buf = '';
+process.stdin.on('data', function(chunk) {
+    buf += chunk;
+});
+process.stdin.on('end', function(){
+    var obj = dox.parseComments(buf);
+    if (opt.d || opt.debug) {
+        process.stdout.write(util.inspect(obj, false, Infinity, true) + '\n');
+        process.exit(0);
+    }
+    process.stdout.write(require(path.join(__dirname, '..', 'gen', generator+".js"))(obj));
+    
+}).resume();

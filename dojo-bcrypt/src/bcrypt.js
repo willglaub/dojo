@@ -48,30 +48,35 @@ module.exports = (function() {
     /**
      * @type {number}
      * @const
+     * @private
      */
     var BCRYPT_SALT_LEN = 16;
 
     /**
      * @type {number}
      * @const
+     * @private
      */
     var GENSALT_DEFAULT_LOG2_ROUNDS = 10;
 
     /**
      * @type {number}
      * @const
+     * @private
      */
     var BLOWFISH_NUM_ROUNDS = 16;
 
     /**
      * @type {number}
      * @const
+     * @private
      */
     var MAX_EXECUTION_TIME = 100;
 
     /**
      * @type {Array.<number>}
      * @const
+     * @private
      */
     var P_ORIG = [
         0x243f6a88, 0x85a308d3, 0x13198a2e, 0x03707344, 0xa4093822,
@@ -83,6 +88,7 @@ module.exports = (function() {
     /**
      * @type {Array.<number>}
      * @const
+     * @private
      */
     var S_ORIG = [
         0xd1310ba6, 0x98dfb5ac, 0x2ffd72db, 0xd01adfb7, 0xb8e1afed,
@@ -295,6 +301,7 @@ module.exports = (function() {
     /**
      * @type {Array.<number>}
      * @const
+     * @private
      */
     var C_ORIG = [
         0x4f727068, 0x65616e42, 0x65686f6c, 0x64657253, 0x63727944,
@@ -307,6 +314,7 @@ module.exports = (function() {
      * @param {Array.<number>} P
      * @param {Array.<number>} S
      * @returns {Array.<number>}
+     * @private
      */
     function _encipher(lr, off, P, S) { // This is our bottleneck: 1714/1905 ticks / 90% - see profile.txt
         var n;
@@ -358,11 +366,9 @@ module.exports = (function() {
      */
     function _key(key, P, S) {
         var offset = 0;
-        /** @type {Array.<number>} */
         var lr = new Array(0x00000000, 0x00000000);
         var plen = P.length;
         var slen = S.length;
-        /** @type {number} */
         for (var i = 0; i < plen; i++) {
             var sw = _streamtoword(key, offset);
             offset = sw.offp;
@@ -390,11 +396,9 @@ module.exports = (function() {
      */
     function _ekskey(data, key, P, S) {
         var offp = 0;
-        /** @type {Array.<number>} */
         var lr = new Array(0x00000000, 0x00000000);
         var plen = P.length;
         var slen = S.length;
-        /** @type {{key: number, offp: number}} */
         var sw;
         for (var i = 0; i < plen; i++) {
             sw = _streamtoword(key, offp);
@@ -646,7 +650,6 @@ module.exports = (function() {
             callback = seed_length;
             seed_length = -1; // Not supported.
         }
-        /** @type {number} */
         var rnd; // Hello closure
         if (typeof rounds == 'function') {
             callback = rounds;

@@ -114,7 +114,12 @@ common.getopt = function(pargv) {
         var arg = pargv[i];
         if (arg.charAt(0) == '-') {
             arg = arg.replace(/^[\-]+/, '');
-            opt[arg] = true;
+            var p = arg.indexOf("=");
+            if (p > 0) {
+                opt[arg.substring(0,p)] = arg.substring(p+1);
+            } else {
+                opt[arg] = true;
+            }
         } else {
             argv.push(arg);
         }

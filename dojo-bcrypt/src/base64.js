@@ -8,6 +8,7 @@
 /**
  * @type {Array.<string>}
  * @const
+ * @private
  **/
 var BASE64_CODE = ['.', '/', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
     'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
@@ -19,6 +20,7 @@ var BASE64_CODE = ['.', '/', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
 /**
  * @type {Array.<number>}
  * @const
+ * @private
  **/
 var BASE64_INDEX = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
     -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
@@ -32,6 +34,7 @@ var BASE64_INDEX = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
 /**
  * Length-delimited base64 encoder and decoder.
  * @type {Object.<string,function(string, number)>}
+ * @private
  */
 var base64 = {};
 
@@ -40,6 +43,7 @@ var base64 = {};
  * @param {Array.<number>} b Byte array
  * @param {number} len Maximum input length
  * @returns {string}
+ * @private
  */
 base64.encode = function(b, len) {
     var off = 0;
@@ -78,6 +82,7 @@ base64.encode = function(b, len) {
  * @param {string} s String to decode
  * @param {number} len Maximum output length
  * @returns {Array.<number>}
+ * @private
  */
 base64.decode = function(s, len) {
     var off = 0;

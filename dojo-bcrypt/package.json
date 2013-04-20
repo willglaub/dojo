@@ -1,6 +1,6 @@
 {
     "name": "dojo-bcrypt",
-    "description": "Optimized native bcrypt with zero dependencies. 100% typed code. Fully compatible to 'bcrypt', used in dojo.",
+    "description": "Optimized bcrypt in plain JavaScript with zero dependencies. 100% typed code. Fully compatible to 'bcrypt'.",
     "version": "0.1.0",
     "author": "Daniel Wirtz <dcode@dcode.io>",
     "contributors": [

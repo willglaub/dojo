@@ -1,0 +1,15 @@
+{
+    "name": "doco",
+    "description": "The JavaScript documentation generator used in dojo, the node.js application server.",
+    "version": "0.1.0",
+    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "main": "./doco.js",
+    "bin": {
+        "doco": "./bin/doco"
+    },
+    "dependencies": {
+        "dojo-common": "0.1.x"
+    },
+    "devDependencies": {},
+    "license": "Apache-2.0"
+}
