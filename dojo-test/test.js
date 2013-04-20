@@ -100,6 +100,21 @@ var Suite = function(tests, name, parent) {
 };
 
 /**
+ * Summarized the results.
+ * @param {number} startTime Start timestamp in milliseconds
+ * @returns {string}
+ */
+Suite.prototype.summarize = function(startTime) {
+    var total = this.ok.length + this.failed.length,
+        taken = Date.now() - startTime;
+    if (this.failed.length > 0) {
+        return this.failed.length+" of "+total+" failed ("+taken+" ms)";
+    } else {
+        return total+" tests ("+taken+" ms)";
+    }
+};
+
+/**
  * @type {string}
  */
 Suite.banner = banner;
@@ -114,15 +129,13 @@ Suite.run = function(tests, name) {
     var suite = new Suite(tests, name);
     process.stdout.write(banner);
     suite.onDone = function() {
-        var total = suite.ok.length + suite.failed.length,
-            taken = Date.now() - time;
         if (suite.failed.length > 0) {
-            fail(suite.failed.length+" of "+total+" failed ("+taken+" ms)", 'test', suite.failed.length);
+            fail(suite.summarize(startTime), 'test', suite.failed.length);
         } else {
-            ok(total+" tests ("+taken+" ms)", 'test');
+            ok(suite.summarize(startTime), 'test');
         }
     };
-    var time = Date.now();
+    var startTime = Date.now();
     suite.run();
 };
 

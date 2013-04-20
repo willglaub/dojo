@@ -94,6 +94,8 @@ API
       * `same` - Second parameter to the callback providing whether the data and encrypted forms match [true | false].
   * `getRounds(encrypted)` - return the number of rounds used to encrypt a given hash
     * `encrypted` - [REQUIRED] - hash from which the number of rounds used should be extracted.
+  * `getSalt(encrypted)` - return the salt portion of the hash
+    * `encrypted` - [REQUIRED] - hash from which the salt portion should be extracted.
     
 Credits
 -------

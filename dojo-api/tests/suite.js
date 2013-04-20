@@ -1,15 +1,21 @@
+// core
 var path = require("path"),
     http = require("http"),
+    
+// dojo
+    common = require(path.join(__dirname, '..', 'common.js')),
     Client = require(path.join(__dirname, "..", "api.js")),
-    Test = require(path.join(__dirname, "..", "test.js"));
+    Test = require(path.join(__dirname, "..", "test.js")),
+    
+// dojo common
+    bcrypt = common.bcrypt;
+
+var hash = bcrypt.hashSync("helloworld");
 
 var server = http.createServer(function(req, res) {
     var data = {}, body = '', code = 200;
     data.method = req.method;
     data.url = req.url;
-    if (data.url == '/login') {
-        data.token = 'hello';
-    }
     data.headers = req.headers;
     if (data.url == '/error') {
         code = 401;
@@ -26,6 +32,16 @@ var server = http.createServer(function(req, res) {
     
     req.on("end", function() {
         data.body = body ? JSON.parse(body) : null;
+        
+        // Fake login
+        if (data.url == '/login') {
+            if (!data.body['response']) {
+                data.challenge = bcrypt.getSalt(hash);
+            } else {
+                data.token = 'hello';
+            }
+        }
+        
         data = JSON.stringify(data);
         head['Content-Length'] = data.length;
         res.writeHead(code, head);
@@ -34,11 +50,13 @@ var server = http.createServer(function(req, res) {
 });
 
 var client;
-var suite = {
+module.exports = {
     'start': function(test) {
-        test.log("Server started on port "+server.address().port);
-        client = new Client("http://localhost:"+server.address().port);
-        test.done();
+        server.listen(/* random port */ 0, "localhost", function() {
+            test.log("Server started on port "+server.address().port);
+            client = new Client("http://localhost:"+server.address().port);
+            test.done();
+        });
     },
     
     'get': function(test) {
@@ -70,12 +88,14 @@ var suite = {
     },
     
     'login': function(test) {
-        client.login("admin", "admin", function(err, res) {
+        client.login("admin", "helloworld", function(err, res) {
             test.ifError(err);
             test.equal(res.method, 'POST');
             test.equal(res.url, '/login');
             test.equal(res.body.name, 'admin');
-            test.ok(res.body.password);
+            test.ok(res.body.name);
+            test.equal(res.body.response, hash);
+            test.ok(res.body.update);
             test.equal(client.token, 'hello');
             test.done();
         });
@@ -96,7 +116,3 @@ var suite = {
         });
     }
 };
-
-server.listen(/* random port */ 0, "localhost", function() {
-    Test.run(suite);
-});

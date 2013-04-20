@@ -83,10 +83,6 @@ Client.prototype.call = function(method, path, data, callback) {
         },
         'auth': this.token !== null ? this.name+':'+this.token : null
     }, function(res) {
-        if (res.statusCode != 200) {
-            callback(new Error(res.statusCode+' '+http.STATUS_CODES[res.statusCode]), null);
-            return;
-        }
         var body = '', err = null;
         res.on('data', function(chunk) {
             body += chunk;
@@ -97,7 +93,10 @@ Client.prototype.call = function(method, path, data, callback) {
         });
         res.on('end', function() {
             if (err === null) {
-                callback(null, body.length > 0 ? JSON.parse(body) : {});
+                if (res.statusCode != 200) {
+                    err = new Error(res.statusCode+' '+http.STATUS_CODES[res.statusCode]);
+                }
+                callback(err, body.length > 0 ? JSON.parse(body) : {});
             }
         });
     });
@@ -164,29 +163,45 @@ Client.prototype.put = function(path, data, callback) {
  * @param callback
  */
 Client.prototype.login = function(name, password, callback) {
-    this.name = name;
-    bcrypt.genSalt(10, function(err, salt) {
+    this.name = name;   
+    this.post("/login", { "name": this.name }, function(err, res) {
         if (err) {
             callback(err, null);
             return;
         }
-        bcrypt.hash(this.name, salt, function(err, hash) {
+        if (!res['challenge']) {
+            callback(new Error("No challenge received from dojo-d"), null);
+            return;
+        }
+        bcrypt.hash(password, res["challenge"], function(err, hash) {
             if (err) {
                 callback(err, null);
                 return;
             }
-            this.password = hash;
-            this.post("/login", { 'name': this.name, 'password': this.password }, function(err, res) {
+            var response = hash;
+            bcrypt.genSalt(function(err, salt) {
                 if (err) {
-                    callback(err, res);
+                    callback(err, null);
                     return;
                 }
-                if (res['token']) {
-                    this.token = res['token'];
-                    callback(null, res);
-                } else {
-                    callback(new Error("Missing API token"), res);
-                }
+                bcrypt.hash(password, salt, function(err, hash) {
+                    if (err) {
+                        callback(err, null);
+                        return;
+                    }
+                    this.post("/login", { 'name': this.name, 'response': response, 'update': hash }, function(err, res) {
+                        if (err) {
+                            callback(err, res);
+                            return;
+                        }
+                        if (!res['token']) {
+                            callback(new Error("Missing API token"), res);
+                            return;
+                        }
+                        this.token = res['token'];
+                        callback(null, res);
+                    }.bind(this));
+                }.bind(this));
             }.bind(this));
         }.bind(this));
     }.bind(this));

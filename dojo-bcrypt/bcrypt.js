@@ -878,6 +878,23 @@ module.exports = (function() {
         }
         return parseInt(hash.split("$")[2], 10);
     };
+
+    /**
+     * Gets the salt from a hash.
+     * @param {string} hash Hash to extract the salt from
+     * @returns {string}
+     * @throws {Error} If hash is not a string or otherwise invalid
+     * @expose
+     */
+    bcrypt.getSalt = function(hash) {
+        if (typeof hash != 'string') {
+            throw(new Error("Illegal type of 'hash': "+(typeof hash)));
+        }
+        if(hash.length != 60) {
+            throw(new Error("Illegal hash length: "+hash.length+" != 60"));
+        }
+        return hash.substring(0, 29);
+    };
     
     return bcrypt;
     

@@ -25,7 +25,7 @@ module.exports = {
     },
     
     'notStrictEqual': function(test) {
-        test.notStrictEqual(true, true); // Let it throw to actually test the error output :-)
+        test.notStrictEqual(true, false);
         test.done();
     },
     

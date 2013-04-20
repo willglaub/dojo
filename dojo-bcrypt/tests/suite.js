@@ -2,7 +2,7 @@ var path = require("path"),
     Suite = require(path.join(__dirname, '..', 'test.js')),
     bcrypt = require(path.join(__dirname, '..', 'bcrypt.js'));
     
-Suite.run({
+module.exports = {
     
     "genSaltSync": function(test) {
         var salt = bcrypt.genSaltSync(10);
@@ -69,9 +69,19 @@ Suite.run({
         });
     },
     
+    "getSalt": function(test) {
+        var hash1 = bcrypt.hashSync("hello", bcrypt.genSaltSync());
+        test.log("Hash: "+hash1);
+        var salt = bcrypt.getSalt(hash1);
+        test.log("Salt: "+salt);
+        var hash2 = bcrypt.hashSync("hello", salt);
+        test.equal(hash1, hash2);
+        test.done();
+    },
+    
     "getRounds": function(test) {
         var hash1 = bcrypt.hashSync("hello", bcrypt.genSaltSync());
         test.equal(bcrypt.getRounds(hash1), 10);
         test.done();
     }
-});
+};
