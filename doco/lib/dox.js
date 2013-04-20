@@ -184,6 +184,11 @@ exports.parseTag = function(str) {
     
     var res;
     switch (tag.type) {
+        case 'class':
+            tag.description = str;
+            break;
+        case 'function':
+            break;            
         case 'param':
             if (str.charAt(0) == '{') {
                 res = exports.parseTagTypes(str);

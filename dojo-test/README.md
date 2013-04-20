@@ -16,7 +16,7 @@ information you actually need and does nothing more than wrapping node's assert 
 
 Recommended usage
 -----------------
-In package.json:
+Place your test suite in `tests/suite.js`. In package.json:
 ```javascript
 ...
 {

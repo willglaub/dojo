@@ -6,11 +6,7 @@ module.exports = function(comments){
         var ctx = comment.ctx;
         var desc = comment.description;
         if (!ctx) return;
-        if (~desc.full.indexOf('Module dependencies')) return;
         if (!ctx.string.indexOf('module.exports')) return;
-        if (context(comment) == 'lr') {
-            console.log(comment);
-        }
         buf.push('### ' + context(comment));
         if (desc.full) {
             buf.push(desc.full.trim().replace(/^/gm, '  '));

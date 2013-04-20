@@ -18,6 +18,9 @@
     "dependencies": {
         "dojo-common": "0.1.x"
     },
+    "devDependencies": {
+        "doco": "0.1.x"
+    },
     "license": "Apache-2.0",
     "scripts": {
         "test": "node tests/run.js"

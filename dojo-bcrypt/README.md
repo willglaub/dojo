@@ -96,7 +96,7 @@ API
     * `encrypted` - [REQUIRED] - hash from which the number of rounds used should be extracted.
   * `getSalt(encrypted)` - return the salt portion of the hash
     * `encrypted` - [REQUIRED] - hash from which the salt portion should be extracted.
-    
+
 Credits
 -------
 Based on work started by Shane Girish at [bcrypt-nodejs](https://github.com/shaneGirish/bcrypt-nodejs), which is itself

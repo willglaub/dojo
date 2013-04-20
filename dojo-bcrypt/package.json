@@ -11,7 +11,7 @@
         "Noah Isaacson <noah@nisaacson.com> (https://github.com/nisaacson)"
     ],
     "repository": {
-        "type": "git",
+        "type": "url",
         "url": "https://github.com/dcodeIO/dojo.git"
     },
     "bugs": {
@@ -30,14 +30,18 @@
     ],
     "main": "./bcrypt.min.js",
     "dependencies": {},
-    "test-dependencies": {
-        "dojo-test": "0.1.x"
+    "devDependencies": {
+        "dojo-test": "0.1.x",
+        "doco": "0.1.x",
+        "preprocessor": "latest",
+        "closurecompiler": "latest"
     },
     "license": "Apache-2.0",
     "scripts": {
         "test": "aladojo",
+        "doco": "cat templates/HEADER.md > README.md && doco --gen=markdown bcrypt.js >> README.md && cat templates/FOOTER.md >> README.md",
         "build": "preprocess ./src/bcrypt.js ./src > ./bcrypt.js",
         "compile": "ccjs bcrypt.js --warning_level=VERBOSE --compilation_level=ADVANCED_OPTIMIZATIONS --externs=externs/minimal-env.js > bcrypt.min.js",
-        "make": "npm run-script build && npm run-script compile && npm test"
+        "make": "npm run-script build && npm run-script compile && npm doco && npm test"
     }
 }

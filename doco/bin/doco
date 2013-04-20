@@ -7,6 +7,7 @@ var path = require("path"),
 // dojo
     common = require(path.join(__dirname, "..", "common.js")),
     doco = require(path.join(__dirname, "..", "doco.js")),
+    pkg = require(path.join(__dirname, '..', 'package.json')),
     
 // bundled
     dox = doco.dox;
@@ -23,9 +24,34 @@ if (typeof opt['gen'] == 'string') {
 
 process.stdin.setEncoding('utf8');
 
+var gotInput = false;
+
+if (!opt.w && !opt.wait) {
+    setTimeout(function() {
+        if (!gotInput) {
+            process.stderr.write([
+                "",
+                "  _| _  _ _ ".green.bold,
+                " (_|(_)(_(_)".green.bold+" v"+pkg['version'],
+                ""
+            ].join('\n')+'\n');
+            process.stderr.write(" Usage:"+" doco ".green.bold+
+                "[".grey.bold+"--gen=json|markdown|html"+"] ".grey.bold+
+                "[".grey.bold+"--wait"+"] ".grey.bold+
+                "< "+
+                "<".grey.bold+"sourcefile"+">".grey.bold+" "
+                +"[".grey.bold+"> outputfile"+"]".grey.bold+"\n\n"+
+                " Legend:"+" <required> [optional]\n".grey.bold
+            );
+            common.fail("Give me input!", "doco");
+        }
+    }, 3000);
+}
+
 var buf = '';
 process.stdin.on('data', function(chunk) {
     buf += chunk;
+    gotInput = true;
 });
 process.stdin.on('end', function(){
     if (opt.d || opt.debug) {
