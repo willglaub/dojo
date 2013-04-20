@@ -27,6 +27,9 @@ A database server inspired by mongoDB, implemented on top of node.js.
 #### [dojo-test](https://npmjs.org/package/dojo-test)
 Test [à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test).
 
+#### [doco](https://npmjs.org/package/doco)
+The documentation generator used to document all dojo packages.
+
 #### [dojo-common](https://npmjs.org/package/dojo-common)
 Basic utilities shared between packages.
 
@@ -37,41 +40,23 @@ Optimized native bcrypt with zero dependencies. 100% typed code. Fully compatibl
 Compound package of dojo, including all of the above as a single easy to use package. Also reduces redundant
 dependencies.
 
-As for now, dojo builds on the following first class packages available on npm:
-
-* [haibu](https://npmjs.org/package/haibu) by nodejitsu
-
-  Spawn your own node.js clouds, on your own hardware. dojo currently uses a custom build of haibu that fixes some
-  problems, especially on the windows platform.
-   
-* [daemonize2](https://npmjs.org/package/daemonize2) by Kuba Niegowski
-
-  Module for easy creation of daemons for Node 0.8.x.
-  
-* [jugglingdb](https://npmjs.org/package/jugglingdb) by Anatoliy Chakkaev
-
-  ORM for every database: redis, mysql, neo4j, mongodb, couchdb, postgres, sqlite
-  
-* [ByteBuffer.js](https://npmjs.org/package/bytebuffer)
-
-  A Java-like, Netty-inspired ByteBuffer implementation using typed arrays.
-  
-If dojo actually uses a dependency this is always for a good reason. Usually, node.js provides most of the required
-functionality out of the box so if a library is used in dojo, it's considered pretty lean and stable by us. As a result
-you won't end up downloading hundreds of partly redundant dependencies when installing dojo. Unfortunately, that's not
-the philosophy used in haibu, but we are ok with that as it's really a one of a kind app.
-
 Current state
 -------------
 Still screwing together the parts.
 <p align="center">
     <img src="https://raw.github.com/dcodeIO/dojo/master/preview.jpg" alt="dojo-cli preview" />
 </p>
-  
+
+Credits
+-------
+dojo builds on first class packages available on npm. To see which ones, please see the respective subdirectory's
+README. However, dojo currently does not depend on any external packages for the reason that all packages are taken
+under review and, till all quality aspects have been made clear, are bundled within the dojo package fur further
+development iterations. All authors of the specific libraries are invited to participate and may, of course, pull our
+changes to their own repositories.
+
 License
 -------
-All of dojo's packages are licensed under the Apache License, Version 2.0 and may be used for free, personally and
-commercially. However, if dojo is useful for you or your company, please consider supporting us so that we are able
-to continue making dojo even better and easier to use. [Contact us](mailto:dcode@dcode.io)!
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dcodeIO/dojo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+All of dojo's packages are licensed under the Apache License, Version 2.0, if not stated otherwise in the sources and
+may be used for free, personally and commercially. However, if dojo is useful for you or your company, please consider
+supporting us so that we are able to continue making dojo even better and easier to use. [Contact us](mailto:dcode@dcode.io)!

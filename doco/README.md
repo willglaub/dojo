@@ -76,7 +76,8 @@ Examples
 
 Credits
 -------
-Based on customized version of [dox](https://npmjs.org/package/dox) and [marked](https://npmjs.org/package/marked).
+Based on customized version of [dox](https://npmjs.org/package/dox) by TJ Holowaychuk and
+[marked](https://npmjs.org/package/marked) by Christopher Jeffrey.
 
 License
 -------
