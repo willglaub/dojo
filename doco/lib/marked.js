@@ -811,7 +811,7 @@
      * Strip HTML
      */
     Parser.prototype.parseAnchor = function(str) {
-        return str.replace(/\W+/g, '').toLowerCase();
+        return str.replace(/ /g, '-').replace(/[^\w\-]+/g, '').toLowerCase();
     };
 
     /**

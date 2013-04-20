@@ -43,7 +43,7 @@ function toc(str) {
 }
 
 function slug(str) {
-    return str.replace(/\W+/g, '').toLowerCase();
+    return str.replace(/ /g, '-').replace(/[^\w\-]+/g, '').toLowerCase();
 }
 
 function headings(str) {

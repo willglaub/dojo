@@ -1,12 +1,12 @@
 ## doco
 
   - [bcrypt](#bcrypt)
-  - [bcrypt.genSaltSync(rounds\*, seed_length\*)](#bcryptgensaltsyncroundsseed_length)
-  - [bcrypt.genSalt(rounds\*, seed_length\*, callback\*)](#bcryptgensaltroundsseed_lengthcallback)
-  - [bcrypt.hashSync(s, salt\*)](#bcrypthashsyncssalt)
-  - [bcrypt.hash(s, salt, callback)](#bcrypthashssaltcallback)
-  - [bcrypt.compareSync(s, hash)](#bcryptcomparesyncshash)
-  - [bcrypt.compare(s, hash, callback)](#bcryptcompareshashcallback)
+  - [bcrypt.genSaltSync(rounds\*, seed_length\*)](#bcryptgensaltsyncrounds-seed_length)
+  - [bcrypt.genSalt(rounds\*, seed_length\*, callback\*)](#bcryptgensaltrounds-seed_length-callback)
+  - [bcrypt.hashSync(s, salt\*)](#bcrypthashsyncs-salt)
+  - [bcrypt.hash(s, salt, callback)](#bcrypthashs-salt-callback)
+  - [bcrypt.compareSync(s, hash)](#bcryptcomparesyncs-hash)
+  - [bcrypt.compare(s, hash, callback)](#bcryptcompares-hash-callback)
   - [bcrypt.getRounds(hash)](#bcryptgetroundshash)
   - [bcrypt.getSalt(hash)](#bcryptgetsalthash)
 
