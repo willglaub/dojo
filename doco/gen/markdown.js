@@ -88,7 +88,7 @@ function paramstable(tags) {
     if (params.length == 0 && returns.length == 0 && throws.length == 0) {
         return "";
     }
-    var spacer = "| | | |\n";
+    var spacer = "| |||\n";
     var tbl = "| Name | Type | Description |\n"+
               "| ---- | ---- | ----------- |\n";
     if (params.length > 0) {

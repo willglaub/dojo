@@ -24,7 +24,7 @@ Synchronously generates a salt.
 | ---- | ---- | ----------- |
 | rounds\* | number | Number of rounds to use, defaults to 10 if omitted |
 | seed_length\* | number | Not supported. |
-| | | |
+| |||
 | **returns** | string | Resulting salt
 
 
@@ -47,7 +47,7 @@ Synchronously generates a hash for the given string.
 | ---- | ---- | ----------- |
 | s | string | String to hash |
 | salt\* | (number &#166; string) | Salt length to generate or salt to use, default to 10 |
-| | | |
+| |||
 | **returns** | ?string | Resulting hash, actually never null
 
 
@@ -70,7 +70,7 @@ Synchronously tests a string against a hash.
 | ---- | ---- | ----------- |
 | s | string | String to compare |
 | hash | string | Hash to test against |
-| | | |
+| |||
 | **returns** | boolean | true if matching, otherwise false
 | **throws** | Error | If an argument is illegal
 
@@ -84,7 +84,7 @@ Asynchronously compares the given data against the given hash.
 | s | string | Data to compare |
 | hash | string | Data to be compared to |
 | callback | function(Error, boolean) | Callback receiving the error, if any, otherwise the result |
-| | | |
+| |||
 | **throws** | Error | If the callback argument is invalid
 
 
@@ -95,7 +95,7 @@ Gets the number of rounds used to encrypt the specified hash.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | hash | string | Hash to extract the used number of rounds from |
-| | | |
+| |||
 | **returns** | number | Number of rounds used
 | **throws** | Error | If hash is not a string
 
@@ -107,7 +107,7 @@ Gets the salt from a hash.
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | hash | string | Hash to extract the salt from |
-| | | |
+| |||
 | **returns** | string | 
 | **throws** | Error | If hash is not a string or otherwise invalid
 
