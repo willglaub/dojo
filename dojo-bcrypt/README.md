@@ -1,3 +1,7 @@
+<h1 align="center">
+    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-small.png" alt="dojo - the node.js application server" />
+</h1>
+
 dojo-bcrypt
 ===========
 Optimized bcrypt in plain JavaScript with zero dependencies. ADVANCED_OPTIMIZATIONS, 100% typed code. Fully compatible
