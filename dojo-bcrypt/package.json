@@ -39,7 +39,7 @@
     "license": "Apache-2.0",
     "scripts": {
         "test": "aladojo",
-        "doco": "cat templates/HEADER.md > README.md && doco --gen=markdown bcrypt.js >> README.md && cat templates/FOOTER.md >> README.md",
+        "doco": "cat templates/HEADER.md > README.md && doco --gen=markdown < bcrypt.js >> README.md && cat templates/FOOTER.md >> README.md",
         "build": "preprocess ./src/bcrypt.js ./src > ./bcrypt.js",
         "compile": "ccjs bcrypt.js --warning_level=VERBOSE --compilation_level=ADVANCED_OPTIMIZATIONS --externs=externs/minimal-env.js > bcrypt.min.js",
         "make": "npm run-script build && npm run-script compile && npm doco && npm test"

@@ -60,42 +60,105 @@ bcrypt.hash('bacon', 8, function(err, hash) {
 });
 ```
 
-API
----
+## doco
 
-`bcrypt.`
+  - [bcrypt](#bcrypt)
+  - [bcrypt.genSaltSync(rounds\*, seed_length\*)](#bcryptgensaltsyncrounds-seed_length)
+  - [bcrypt.genSalt(rounds\*, seed_length\*, callback\*)](#bcryptgensaltrounds-seed_length-callback)
+  - [bcrypt.hashSync(s, salt\*)](#bcrypthashsyncs-salt)
+  - [bcrypt.hash(s, salt, callback)](#bcrypthashs-salt-callback)
+  - [bcrypt.compareSync(s, hash)](#bcryptcomparesyncs-hash)
+  - [bcrypt.compare(s, hash, callback)](#bcryptcompares-hash-callback)
+  - [bcrypt.getRounds(hash)](#bcryptgetroundshash)
+  - [bcrypt.getSalt(hash)](#bcryptgetsalthash)
 
-  * `genSaltSync(rounds, seed_length)`
-    * `rounds` - [OPTIONAL] - the number of rounds to process the data for. (default - 10)
-    * `seed_length` - [NOT_SUPPORTED] - RAND_bytes wants a length. to make that a bit flexible, you can specify a seed_length. (default - 20)
-  * `genSalt(rounds, seed_length, cb)`
-    * `rounds` - [OPTIONAL] - the number of rounds to process the data for. (default - 10)
-    * `seed_length` - [NOT_SUPPORTED] - RAND_bytes wants a length. to make that a bit flexible, you can specify a seed_length. (default - 20)
-    * `cb` - [REQUIRED] - a callback to be fired once the salt has been generated. uses eio making it asynchronous.
-      * `err` - First parameter to the callback detailing any errors.
-      * `salt` - Second parameter to the callback providing the generated salt.
-  * `hashSync(data, salt)`
-    * `data` - [REQUIRED] - the data to be encrypted.
-    * `salt` - [REQUIRED] - the salt to be used in encryption.
-  * `hash(data, salt, cb)`
-    * `data` - [REQUIRED] - the data to be encrypted.
-    * `salt` - [REQUIRED] - the salt to be used to hash the password. if specified as a number then a salt will be generated and used (see examples).
-    * `cb` - [REQUIRED] - a callback to be fired once the data has been encrypted. uses eio making it asynchronous.
-      * `err` - First parameter to the callback detailing any errors.
-      * `encrypted` - Second parameter to the callback providing the encrypted form.
-  * `compareSync(data, encrypted)`
-    * `data` - [REQUIRED] - data to compare.
-    * `encrypted` - [REQUIRED] - data to be compared to.
-  * `compare(data, encrypted, cb)`
-    * `data` - [REQUIRED] - data to compare.
-    * `encrypted` - [REQUIRED] - data to be compared to.
-    * `cb` - [REQUIRED] - a callback to be fired once the data has been compared. uses eio making it asynchronous.
-      * `err` - First parameter to the callback detailing any errors.
-      * `same` - Second parameter to the callback providing whether the data and encrypted forms match [true | false].
-  * `getRounds(encrypted)` - return the number of rounds used to encrypt a given hash
-    * `encrypted` - [REQUIRED] - hash from which the number of rounds used should be extracted.
-  * `getSalt(encrypted)` - return the salt portion of the hash
-    * `encrypted` - [REQUIRED] - hash from which the salt portion should be extracted.
+### bcrypt
+bcrypt namespace.
+
+
+### bcrypt.genSaltSync(rounds\*, seed_length\*)
+Synchronously generates a salt.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rounds\* | number | Number of rounds to use, defaults to 10 if omitted |
+| seed_length\* | number | Not supported. |
+|   |||
+| **returns** | string | Resulting salt
+
+### bcrypt.genSalt(rounds\*, seed_length\*, callback\*)
+Asynchronously generates a salt.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| rounds\* | (number &#166; function(Error, ?string)) | Number of rounds to use, defaults to 10 if omitted |
+| seed_length\* | (number &#166; function(Error, ?string)) | Not supported. |
+| callback\* | function(Error, ?string) | Callback receiving the error, if any, and the resulting salt |
+
+### bcrypt.hashSync(s, salt\*)
+Synchronously generates a hash for the given string.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| s | string | String to hash |
+| salt\* | (number &#166; string) | Salt length to generate or salt to use, default to 10 |
+|   |||
+| **returns** | ?string | Resulting hash, actually never null
+
+### bcrypt.hash(s, salt, callback)
+Asynchronously generates a hash for the given string.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| s | string | String to hash |
+| salt | number &#166; string | Salt length to generate or salt to use |
+| callback | function(Error, ?string) | Callback receiving the error, if any, and the resulting hash |
+
+### bcrypt.compareSync(s, hash)
+Synchronously tests a string against a hash.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| s | string | String to compare |
+| hash | string | Hash to test against |
+|   |||
+| **returns** | boolean | true if matching, otherwise false
+| **throws** | Error | If an argument is illegal
+
+### bcrypt.compare(s, hash, callback)
+Asynchronously compares the given data against the given hash.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| s | string | Data to compare |
+| hash | string | Data to be compared to |
+| callback | function(Error, boolean) | Callback receiving the error, if any, otherwise the result |
+|   |||
+| **throws** | Error | If the callback argument is invalid
+
+### bcrypt.getRounds(hash)
+Gets the number of rounds used to encrypt the specified hash.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| hash | string | Hash to extract the used number of rounds from |
+|   |||
+| **returns** | number | Number of rounds used
+| **throws** | Error | If hash is not a string
+
+### bcrypt.getSalt(hash)
+Gets the salt from a hash.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| hash | string | Hash to extract the salt from |
+|   |||
+| **returns** | string | 
+| **throws** | Error | If hash is not a string or otherwise invalid
+
+Command line
+------------
+`Usage: bcrypt <input> [salt]`
 
 Credits
 -------
