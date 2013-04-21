@@ -1,6 +1,4 @@
-<p style="float: right">
-    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-small.png" alt="dojo - the node.js application server" />
-</p>
+<img style="float: right" src="https://raw.github.com/dcodeIO/dojo/master/dojo-small.png" alt="dojo - the node.js application server" />
 dojo-bcrypt
 ===========
 Optimized bcrypt in plain JavaScript with zero dependencies. ADVANCED_OPTIMIZATIONS, 100% typed code. Fully compatible
