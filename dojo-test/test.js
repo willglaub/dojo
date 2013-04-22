@@ -26,6 +26,7 @@ module.exports = (function() {
     // core
     var path = require("path"),
         assert = require("assert"),
+        domain = require("domain"),
 
     // dojo
         pkg = require(path.join(__dirname, "package.json")),
@@ -63,7 +64,7 @@ module.exports = (function() {
         res.push("   "+head);
         for (var i=2; i<lines.length; i++) { // skip head and wrapper
             var line = " "+lines[i];
-            if (/dojo\-test[\\/]test\.js/.test(line)) {
+            if (/dojo\-test[\\/]test\.js|Function\.Module\.runMain \(module\.js:/.test(line)) {
                 break;
             }
             res.push(line.replace(/(Object\.module\.exports\.)|(\[as test\] )/g, ''));
@@ -219,29 +220,43 @@ module.exports = (function() {
             for (var i=3+test['name'].length; i<50; i++) {
                 space += " ";
             }
-
+            
             /**
              * Called when a test is done. May be asynchronous.
              * @private
              */
             function done() {
-                process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, Date.now() - time)+'\n');
+                process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, Date.now() - inst.start)+'\n');
                 suite.ok.push(test);
+                process.nextTick(next);
+            }
+
+            /**
+             * Fails a test.
+             * @param {Error} e Exception caught
+             */
+            function fail(e) {
+                process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, Date.now() - inst.start)+'\n');
+                process.stdout.write('\n'+parseStack(e.stack)+'\n');
+                process.stderr.write("\n");
+                test['error'] = e;
+                suite.failed.push(test);
                 process.nextTick(next);
             }
 
             var inst = new Test(test['name']);
             inst.done = done;
-            time = Date.now();
+            inst.start = Date.now();
             try {
-                test['test'](inst);
+                var d = domain.create();
+                d.on("error", function(e) {
+                    fail(e);
+                });
+                d.run(function() {
+                    test['test'](inst);
+                });
             } catch (e) {
-                process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, Date.now() - time)+'\n');
-                process.stdout.write('\n'+parseStack(e.stack)+'\n');
-                process.stderr.write("\n");
-                test['error'] = e;
-                suite.failed.push(test);
-                next();
+                fail(e);
             }
         }
 
@@ -270,6 +285,7 @@ module.exports = (function() {
     Suite.Test = function(name) {
         this.testName = name;
         this.count = 0;
+        this.start = -1;
     };
 
     // Actually wraps assert

@@ -62,6 +62,19 @@ module.exports = {
         }
     },
     
+    "async": function(test) {
+        process.nextTick(function() {
+            test.done();
+        });
+    },
+
+    /* "asyncError": function(test) {
+        process.nextTick(function() {
+            test.strictEqual(true, false);
+            test.done();
+        });
+    }, */
+    
     "log": function(test) {
         test.log("Hello world!");
         test.done();
