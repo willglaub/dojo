@@ -4,7 +4,7 @@ Test à la [dojo](https://github.com/dcodeIO/dojo), the node.js application serv
 information you actually need and does nothing more than wrapping node's assert module.
 
 * Syntax inspired by [nodeunit](https://npmjs.org/package/nodeunit)
-* No fancy crap, just testing
+* No fancy crap, just testing like a man
 * Non-utf8 and Windows terminal approved
 * Allows asynchronous testing
 * Allows modular tests by just assembling data structures
@@ -76,7 +76,7 @@ Self-explaining examples
 * [tests/run.js](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/run.js) - runs it through the API
 
 When typing `aladojo` in a terminal, `tests/suite.js` will be run. Also supports running runners: `aladojo tests/run.js`
-or custom / other unit tests under the condition, that the runner (here: `run.js`) does not export anything.
+or custom / other unit tests under the condition that the runner (here: `run.js`) does not export anything.
 
 License
 -------
