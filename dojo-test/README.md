@@ -15,8 +15,10 @@ information you actually need and does nothing more than wrapping node's assert 
     <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.jpg" alt="test à la dojo" />
 </p>
 
-Recommended usage
------------------
+Usage
+-----
+
+#### Cli
 Place your test suite in `tests/suite.js`.
 
 ```javascript
@@ -35,8 +37,7 @@ Place your test suite in `tests/suite.js`.
 
 `npm test`
 
-Alternative usage (API)
------------------------
+#### API
 
 ```javascript
 // tests/run.js
@@ -63,6 +64,11 @@ Suite.run({
 ```
 
 `npm test`
+
+Assertions
+----------
+All of [node's assert](http://nodejs.org/api/assert.html) (just replace `assert` through `test`) plus `test.notOk(...)`
+as an alias for assert's `ifError`. There is also a `test.log(...)` for logging straight to the test console.
 
 Self-explaining examples
 ------------------------
