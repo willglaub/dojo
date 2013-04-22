@@ -1,0 +1,17 @@
+{
+    "name": "dojo-btree",
+    "description": "A ridiculously lean B-tree of variable orders in plain JavaScript. Closure-compiled using ADVANCED_OPTIMIZATIONS, 100% typed.",
+    "version": "0.1.0",
+    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "main": "btree.min.js",
+    "dependencies": {},
+    "devDependencies": {
+        "dojo-test": "0.1.x"
+    },
+    "scripts": {
+        "make": "npm run-script compile && npm test",
+        "compile": "ccjs btree.js --warning_level=VERBOSE --compilation_level=ADVANCED_OPTIMIZATIONS --externs=externs/minimal-env.js --language_in=ECMASCRIPT5_STRICT > btree.min.js",
+        "test": "aladojo"
+    },
+    "license": "Apache-2.0"
+}

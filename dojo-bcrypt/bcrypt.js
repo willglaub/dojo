@@ -510,6 +510,7 @@ module.exports = (function() {
     }
 
     /**
+     * Expensive key schedule Blowfish.
      * @param {Array.<number>} data
      * @param {Array.<number>} key
      * @param {Array.<number>} P
@@ -888,10 +889,10 @@ module.exports = (function() {
     };
 
     /**
-     * Gets the salt from a hash.
+     * Gets the salt portion from a hash.
      * @param {string} hash Hash to extract the salt from
-     * @returns {string}
-     * @throws {Error} If hash is not a string or otherwise invalid
+     * @returns {string} Extracted salt part portion
+     * @throws {Error} If `hash` is not a string or otherwise invalid
      * @expose
      */
     bcrypt.getSalt = function(hash) {

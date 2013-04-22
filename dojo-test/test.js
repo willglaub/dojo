@@ -106,6 +106,8 @@ module.exports = (function() {
         this.ok = [];
         /** @type {{ name: String, test: function(Test), error: Error }} */
         this.failed = [];
+        /** @type {number} */
+        this.assertions = 0;
     };
 
     /**
@@ -118,9 +120,9 @@ module.exports = (function() {
         var total = this.ok.length + this.failed.length,
             taken = Date.now() - startTime;
         if (this.failed.length > 0) {
-            return this.failed.length+" of "+total+" failed ("+taken+" ms)";
+            return this.failed.length+" of "+total+" failed ("+taken+" ms, "+this.assertions+" assertions)";
         } else {
-            return total+" tests ("+taken+" ms)";
+            return total+" tests ("+taken+" ms, "+this.assertions+" assertions)";
         }
     };
 
@@ -156,7 +158,8 @@ module.exports = (function() {
      * @expose
      */
     Suite.prototype.run = function(callback) {
-
+        this.assertions = 0;
+        
         // Wrap native assert
         for (var i in assert) {
             if (assert.hasOwnProperty(i) && !(i in this)) this[i] = assert[i];
@@ -227,6 +230,7 @@ module.exports = (function() {
              * @private
              */
             function done() {
+                suite.assertions += inst.count;
                 process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, Date.now() - inst.start)+'\n');
                 suite.ok.push(test);
                 process.nextTick(next);
@@ -237,6 +241,7 @@ module.exports = (function() {
              * @param {Error} e Exception caught
              */
             function fail(e) {
+                suite.assertions += inst.count;
                 process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, Date.now() - inst.start)+'\n');
                 process.stdout.write('\n'+parseStack(e.stack)+'\n');
                 process.stderr.write("\n");

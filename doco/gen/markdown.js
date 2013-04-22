@@ -7,7 +7,17 @@ module.exports = function(comments){
         var desc = comment.description;
         if (!ctx) return;
         if (!ctx.string.indexOf('module.exports')) return;
-        buf.push('### ' + context(comment));
+        var cls = false;
+        comment.tags.forEach(function(tag) {
+            if (tag.type == 'constructor') {
+                cls = true;
+            }
+        });
+        if (cls) {
+            buf.push('### Class: '+ctx.name);
+        } else {
+            buf.push('### ' + context(comment));
+        }
         if (desc.full) {
             buf.push(desc.full.trim().replace(/^/gm, '  '));
             buf.push('');

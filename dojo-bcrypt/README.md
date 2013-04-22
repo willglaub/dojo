@@ -147,14 +147,14 @@ Gets the number of rounds used to encrypt the specified hash.
 | **throws** | Error | If hash is not a string
 
 ### bcrypt.getSalt(hash)
-Gets the salt from a hash.
+Gets the salt portion from a hash.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | hash | string | Hash to extract the salt from |
 |   |||
-| **returns** | string | 
-| **throws** | Error | If hash is not a string or otherwise invalid
+| **returns** | string | Extracted salt part portion
+| **throws** | Error | If `hash` is not a string or otherwise invalid
 
 Command line
 ------------
