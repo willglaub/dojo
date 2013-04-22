@@ -10,6 +10,7 @@
     "bugs": {
         "url": "https://github.com/dcodeIO/dojo/issues"
     },
+    "keywords": ["testing", "spec", "test", "development", "dev", "unit test", "unittest", "dojo"],
     "main": "./test.js",
     "bin": {
         "test": "./bin/test",

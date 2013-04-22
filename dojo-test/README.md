@@ -9,6 +9,7 @@ information you actually need and does nothing more than wrapping node's assert 
 * Allows asynchronous testing
 * Allows modular tests by just assembling data structures
 * API and Cli (just `test`, or `aladojo` if you are feeling culinarily)
+* Small footprint, minimal dependencies
 
 <p align="center">
     <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.jpg" alt="test à la dojo" />
@@ -16,8 +17,10 @@ information you actually need and does nothing more than wrapping node's assert 
 
 Recommended usage
 -----------------
-Place your test suite in `tests/suite.js`. In package.json:
+Place your test suite in `tests/suite.js`.
+
 ```javascript
+// package.json
 ...
 {
     "devDependencies": {
@@ -29,6 +32,36 @@ Place your test suite in `tests/suite.js`. In package.json:
 }
 ...
 ```
+
+`npm test`
+
+Alternative usage (API)
+-----------------------
+
+```javascript
+// tests/run.js
+var path = require("path"),
+    Suite = require("dojo-test");
+
+Suite.run({
+    "firsttest": function(test) {
+        ...
+        test.done();
+    },
+    ...
+});
+```
+
+```javascript
+// package.json
+...
+{
+    "scripts": {
+        "test": "node tests/run.js"
+    }
+}
+```
+
 `npm test`
 
 Self-explaining examples
