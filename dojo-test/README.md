@@ -10,6 +10,7 @@ information you actually need and does nothing more than wrapping node's assert 
 * Allows modular tests by just assembling data structures
 * API and Cli (just `test`, or `aladojo` if you are feeling culinarily)
 * Small footprint, minimal dependencies
+* Available through [npm](https://npmjs.org/package/dojo-test): `npm [-g] install dojo-test`
 
 <p align="center">
     <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/preview.jpg" alt="test à la dojo" />
@@ -68,7 +69,7 @@ Suite.run({
 Assertions
 ----------
 All of [node's assert](http://nodejs.org/api/assert.html) (just replace `assert` through `test`) plus `test.notOk(...)`
-as an alias for assert's `ifError`. There is also a `test.log(...)` for logging straight to the test console.
+as a negated `ok`. There is also a `test.log(...)` for logging straight to the test console.
 
 Self-explaining examples
 ------------------------
