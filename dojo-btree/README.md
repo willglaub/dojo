@@ -90,7 +90,7 @@ Benchmark
 The test suite contains a 100k benchmark:
 
 <p align="center">
-    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/bench.jpg" alt="benchmark" />
+    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-btree/bench.jpg" alt="benchmark" />
 </p>
 
 Ran in node v0.10.3 on one core of an 3.40Ghz Intel Core i7-2600K working with premium DDR3 ram (I'm too lazy to look
