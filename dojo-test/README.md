@@ -75,8 +75,9 @@ Self-explaining examples
 * [tests/suite.js](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/suite.js) - test suite as a module
 * [tests/run.js](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/run.js) - runs it through the API
 
-When typing `aladojo` in a terminal, `tests/suite.js` will be run. Also supports running runners: `aladojo tests/run.js`
-or custom / other unit tests under the condition that the runner (here: `run.js`) does not export anything.
+When typing `test` or `aladojo` in a terminal, `tests/suite.js` will be run. Also supports running runners:
+`aladojo tests/run.js` or custom / other unit tests under the condition that the runner (here: `run.js`) does not export
+anything. If it does, whatever it exports will be run.
 
 License
 -------
