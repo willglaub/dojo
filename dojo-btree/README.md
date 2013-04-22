@@ -93,10 +93,12 @@ The test suite contains a 100k benchmark:
     <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-test/bench.jpg" alt="benchmark" />
 </p>
 
-Ran on one core of an 3.40Ghz Intel Core i7-2600K working with premium DDR3 ram (I'm too lazy to look up the exact
-model). Results include compute time of assertions for every single operation. To test on your own hardware, simply run
-`npm test`. [test à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test) is an optimized wrapper around
-node's native assert module.
+Ran in node v0.10.3 on one core of an 3.40Ghz Intel Core i7-2600K working with premium DDR3 ram (I'm too lazy to look
+up the exact model). Results include compute time of assertions for every single operation. To test on your own hardware,
+simply run `npm [-g] install dojo-test` + `npm test`.
+
+[test à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test) itself is an optimized wrapper around node's
+native assert module.
 
 License
 -------
