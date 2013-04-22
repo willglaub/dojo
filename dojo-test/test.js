@@ -125,6 +125,7 @@ module.exports = (function() {
     };
 
     /**
+     * Test banner.
      * @type {string}
      * @expose
      */
