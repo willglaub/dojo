@@ -42,8 +42,7 @@ Place your test suite in `tests/suite.js`.
 
 ```javascript
 // tests/run.js
-var path = require("path"),
-    Suite = require("dojo-test");
+var Suite = require("dojo-test");
 
 Suite.run({
     "firsttest": function(test) {
@@ -73,8 +72,11 @@ as a negated `ok`. There is also a `test.log(...)` for logging straight to the t
 
 Self-explaining examples
 ------------------------
-* [test run](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/run.js)
-* [test suite](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/suite.js)
+* [tests/suite.js](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/suite.js) - test suite as a module
+* [tests/run.js](https://github.com/dcodeIO/dojo/blob/master/dojo-test/tests/run.js) - runs it through the API
+
+When typing `aladojo` in a terminal, `tests/suite.js` will be run. Also supports running runners: `aladojo tests/run.js`
+or custom / other unit tests under the condition, that the runner (here: `run.js`) does not export anything.
 
 License
 -------
