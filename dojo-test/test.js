@@ -206,9 +206,11 @@ module.exports = (function() {
             if (typeof v == 'function') {
                 tests.push({'name': k, 'test': v});
             } else {
-                var ks = Object.keys(v);
-                for (var i=0; i<ks.length; i++) {
-                    lineUp(k+'.'+ks[i], v[ks[i]]);
+                if (v) { // Might be set to null
+                    var ks = Object.keys(v);
+                    for (var i=0; i<ks.length; i++) {
+                        lineUp(k+'.'+ks[i], v[ks[i]]);
+                    }
                 }
             }
         }

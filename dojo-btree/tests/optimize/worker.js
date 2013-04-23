@@ -2,8 +2,7 @@ var path = require("path"),
     Suite = require(path.join(__dirname, '..', '..', 'test.js')),
     bench = require(path.join(__dirname, '..', 'bench.js'));
 
-/* process.stdout = {};
-process.stdout.write = function(data) {}; */
+process.stdout.write = function() {}; // Disable console
 
 // When a worker gets a message, it simply calculates
 process.on("message", function(msg) {
@@ -46,7 +45,7 @@ function calculate(order, size, callback, times) {
         return;
     }
     times = times || 3;
-    var suite = new Suite(bench(order, size), ""+order, null);
+    var suite = new Suite(bench(order, size, /* skipAsserted */ true), ""+order, null);
     var startTime = hrtime();
     suite.run(function() {
         var time = hrtime() - startTime;
@@ -82,14 +81,15 @@ function calculateRange(min, max, size, callback, times) {
                 } else if (maxTime < minTime && maxTime < midTime) {
                     callback([min < mid ? mid : mid+1, max], maxTime);
                 } else if (midTime < minTime && midTime < maxTime) {
-                    if (minTime < maxTime) {
+                    callback([min+1, (max > min+1) ? max-1 : max], midTime);
+                    /* if (minTime < maxTime) {
                         callback([min, mid], midTime);
                     } else if (maxTime < minTime) {
                         callback([mid, max], maxTime);
                     } else {
                         delete cache[min]; delete cache[mid]; delete cache[max];
                         callback([min, max], -1);
-                    }
+                    } */
                 } else {
                     delete cache[min]; delete cache[mid]; delete cache[max];
                     callback([min, max], -1);

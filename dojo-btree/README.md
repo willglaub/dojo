@@ -99,6 +99,20 @@ up the exact model). To test on your own hardware, simply run `npm [-g] install 
 [test à la dojo](https://github.com/dcodeIO/dojo/tree/master/dojo-test) itself is an optimized wrapper around node's
 native assert module.
 
+Optimizer
+---------
+Also includes a cluster-based (runs in a dedicated worker) optimizer in `tests/optimize.js` that takes ranges of orders
+to calculate the optimal order for a specific tree size:
+
+<p align="center">
+    <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-btree/optimize.jpg" alt="optimizer" />
+</p>
+
+The `times` parameter specifies how many benchmarks for each order shall be run to eliminate random peeks and is
+responsible for how long a test takes. Results may vary depending on the actual hardware configuration used.
+Beware: The default settings that have been used to find btree's default order of 52 (orders 0 to 200, 100k items, 20
+times) will take a while to process.
+
 License
 -------
 Apache License, Version 2.0

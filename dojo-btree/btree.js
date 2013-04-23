@@ -109,7 +109,7 @@
         
         // Validate order
         if (typeof order == 'undefined') {
-            order = 50; // Benchmarks proofed that this is close to the optimum
+            order = 52; // Benchmarks proofed that this is close to the optimum
         } else if (typeof order == 'number') {
             order = Math.floor(order);
         } else {

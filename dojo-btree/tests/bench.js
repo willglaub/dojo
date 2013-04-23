@@ -1,8 +1,13 @@
 var path = require("path"),
     btree = require(path.join(__dirname, '..', 'btree.min.js'));
 
-// Builds a custom benchmark
-module.exports = function(order, size) {
+/**
+ * Builds a custom benchmark.
+ * @param {number} order Order
+ * @param {number} size Tree size
+ * @param {boolean=} skipAsserted Skips assertions if set to true
+ */
+function buildBenchmark(order, size, skipAsserted) {
     var Tree, tree;
     var max = size* 2;
     return {
@@ -14,16 +19,16 @@ module.exports = function(order, size) {
 
         "put": {
             
-            "asserted": {
+            "asserted": skipAsserted ? null : {
                 
-                "notExistingAsserted": function(test) {
+                "notExisting": function(test) {
                     for (var i=0; i<max; i+=2) {
                         test.strictEqual(tree.put(i, i), true);
                     }
                     test.done();
                 },
 
-                "existingAsserted": function(test) {
+                "existing": function(test) {
                     for (var i=0; i<max; i+=2) {
                         test.strictEqual(tree.put(i, i), false);
                     }
@@ -53,15 +58,15 @@ module.exports = function(order, size) {
 
         "get": {
             
-            "asserted": {
-                "notExistingAsserted": function(test) {
+            "asserted": skipAsserted ? null : {
+                "notExisting": function(test) {
                     for (var i=1; i<max; i+=2) {
                         test.strictEqual(tree.get(i), undefined);
                     }
                     test.done();
                 },
 
-                "existingAsserted": function(test) {
+                "existing": function(test) {
                     for (var i=0; i<max; i+=2) {
                         test.strictEqual(tree.get(i), i);
                     }
@@ -86,7 +91,7 @@ module.exports = function(order, size) {
 
         "walk": {
             
-            "asserted": {
+            "asserted": skipAsserted ? null : {
                 
                 "asc": function(test) {
                     var n=0;
@@ -145,9 +150,16 @@ module.exports = function(order, size) {
                 test.done();
             },
 
+            "existing": !skipAsserted ? null : function(test) {
+                for (var i=0; i<max; i+=2) {
+                    tree.del(i);
+                }
+                test.done();
+            },
+
             // slipped existing to make the asserted block work. doesn't matter anyhow.
             
-            "asserted": {
+            "asserted": skipAsserted ? null : {
                 
                 "notExisting": function(test) {
                     for (var i=1; i<max; i+=2) {
@@ -167,8 +179,12 @@ module.exports = function(order, size) {
         },
 
         "finish": function(test) {
-            test.strictEqual(tree.count(), 0);
+            if (!skipAsserted) {
+                test.strictEqual(tree.count(), 0);
+            }
             test.done();
         }
     };
-};
+}
+
+module.exports = buildBenchmark;
