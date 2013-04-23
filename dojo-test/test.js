@@ -223,7 +223,7 @@ module.exports = (function() {
          */
         function stats(test, taken) {
             var space = " ";
-            for (var i=3+test.testName.length; i<45; i++) {
+            for (var i=3+test.testName.length; i<46; i++) {
                 space += " ";
             }
             return space+pad((taken/1000).toFixed(3), 10)+" ms "+pad(test.count, 6)+" assertions ";
