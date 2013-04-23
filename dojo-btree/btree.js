@@ -108,7 +108,9 @@
     btree.create = function(order, compare) {
         
         // Validate order
-        if (typeof order == 'number') {
+        if (typeof order == 'undefined') {
+            order = 50; // Benchmarks proofed that this is close to the optimum
+        } else if (typeof order == 'number') {
             order = Math.floor(order);
         } else {
             order = parseInt(order, 10);

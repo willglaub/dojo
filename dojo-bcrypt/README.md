@@ -1,7 +1,7 @@
 <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-small.png" alt="dojo" /><sup>-bcrypt</sup>
 ===========
-Optimized bcrypt in plain JavaScript with zero dependencies. ADVANCED_OPTIMIZATIONS, 100% typed code. Fully compatible
-to [bcrypt](https://npmjs.org/package/bcrypt) and used in [dojo](https://github.com/dcodeIO/dojo).
+Optimized bcrypt in plain JavaScript with zero dependencies. Gone through Closure Compiler on ADVANCED_OPTIMIZATIONS,
+100% typed code. Fully compatible to [bcrypt](https://npmjs.org/package/bcrypt) and used in [dojo](https://github.com/dcodeIO/dojo).
 
 Usage - Sync
 ------------

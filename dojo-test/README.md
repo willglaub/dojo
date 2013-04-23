@@ -79,6 +79,15 @@ When typing `test` or `aladojo` in a terminal, `tests/suite.js` will be run. Als
 `aladojo tests/run.js` or custom / other unit tests under the condition that the runner (here: `run.js`) does not export
 anything. If it does, whatever it exports will be run.
 
+Command line options
+--------------------
+| Option                     | Function                                 |
+| -------------------------- | ---------------------------------------- |
+| `--nocolors` or `-nc`      | Disables terminal colors                 |
+| `--name=NAME` or `-n=NAME` | Sets the suite name, defaults to `suite` |
+
+Example: `aladojo --name=MyGame -nc`
+
 License
 -------
 Apache License, Version 2.0

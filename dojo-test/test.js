@@ -88,6 +88,15 @@ module.exports = (function() {
     }
 
     /**
+     * Gets the reference time in microseconds.
+     * @returns {number} Microseconds (1 μs = 10^6 s)
+     */
+    function hrtime() {
+        var hr = process.hrtime();
+        return Math.round(hr[0]*1000000 + hr[1]/1000);
+    }
+
+    /**
      * Constructs a new Suite.
      * @class Test suite used in dojo, the node.js application server.
      * @param {Object.<string,(function(Suite)|Object.<string,Suite>)>} tests Tests
@@ -118,20 +127,28 @@ module.exports = (function() {
      */
     Suite.prototype.summarize = function(startTime) {
         var total = this.ok.length + this.failed.length,
-            taken = Date.now() - startTime;
+            taken = hrtime() - startTime;
         if (this.failed.length > 0) {
-            return this.failed.length+" of "+total+" failed ("+taken+" ms, "+this.assertions+" assertions)";
+            return this.failed.length+" of "+total+" failed ("+(taken/1000).toFixed(3)+" ms, "+this.assertions+" assertions)";
         } else {
-            return total+" tests ("+taken+" ms, "+this.assertions+" assertions)";
+            return total+" tests ("+(taken/1000).toFixed(3)+" ms, "+this.assertions+" assertions)";
         }
     };
 
     /**
-     * Test banner.
-     * @type {string}
+     * Test banner. Wrapped in a function in case --nocolors has been used.
+     * @returns {string}
      * @expose
      */
-    Suite.banner = banner;
+    Suite.banner = function() {
+        return [
+            '',
+            ' |_ _ _|_'.green.bold,
+            ' |_(-_)|_'.green.bold+"  à la dojo v"+pkg['version'],
+            '',
+            ''
+        ].join('\n');
+    };
 
     /**
      * Runs a bunch of tests.
@@ -141,8 +158,8 @@ module.exports = (function() {
      */
     Suite.run = function(tests, name) {
         var suite = new Suite(tests, name);
-        process.stdout.write(banner);
-        var startTime = Date.now();
+        process.stdout.write(Suite.banner());
+        var startTime = hrtime();
         suite.run(function() {
             if (suite.failed.length > 0) {
                 fail(suite.summarize(startTime), 'test', suite.failed.length);
@@ -200,16 +217,16 @@ module.exports = (function() {
         /**
          * Generates some right-aligned stats.
          * @param {Test} test
-         * @param {number} ms
+         * @param {number} taken Microseconds
          * @returns {string}
          * @private
          */
-        function stats(test, ms) {
+        function stats(test, taken) {
             var space = " ";
-            for (var i=3+test.testName.length; i<50; i++) {
+            for (var i=3+test.testName.length; i<45; i++) {
                 space += " ";
             }
-            return space+pad(ms, 4)+" ms "+pad(test.count, 3)+" assertions ";
+            return space+pad((taken/1000).toFixed(3), 10)+" ms "+pad(test.count, 6)+" assertions ";
         }
 
         /**
@@ -218,8 +235,6 @@ module.exports = (function() {
          * @private
          */
         function run(test) {
-            var time;
-
             var space = " ";
             for (var i=3+test['name'].length; i<50; i++) {
                 space += " ";
@@ -231,7 +246,7 @@ module.exports = (function() {
              */
             function done() {
                 suite.assertions += inst.count;
-                process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, Date.now() - inst.start)+'\n');
+                process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, hrtime()-inst.start)+'\n');
                 suite.ok.push(test);
                 process.nextTick(next);
             }
@@ -242,7 +257,7 @@ module.exports = (function() {
              */
             function fail(e) {
                 suite.assertions += inst.count;
-                process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, Date.now() - inst.start)+'\n');
+                process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, hrtime()-inst.start)+'\n');
                 process.stdout.write('\n'+parseStack(e.stack)+'\n');
                 process.stderr.write("\n");
                 test['error'] = e;
@@ -252,7 +267,7 @@ module.exports = (function() {
 
             var inst = new Test(test['name']);
             inst.done = done;
-            inst.start = Date.now();
+            inst.start = hrtime();
             try {
                 var d = domain.create();
                 d.on("error", function(e) {

@@ -11,22 +11,28 @@ var path = require("path"),
 var common = {};
 
 /**
- * npm: colors
- * @type {?}
- */
-common.colors = require(path.join(__dirname, 'lib', 'colors.min.js'));
-
-/**
  * npm: dojo-bcrypt
  * @type {bcrypt}
  */
 common.bcrypt = require(path.join(__dirname, 'bcrypt.js'));
 
 /**
+ * npm: colors
+ * @type {?}
+ */
+common.colors = require(path.join(__dirname, 'lib', 'colors.min.js'));
+
+/**
  * npm: semver
  * @type {semver}
  */
 common.semver = require(path.join(__dirname, 'lib', 'semver.min.js'));
+
+/**
+ * npm: pkginfo
+ * @type {pkginfo}
+ */
+common.semver = require(path.join(__dirname, 'lib', 'pkginfo.min.js'));
 
 /**
  * @type {events.EventEmitter}
