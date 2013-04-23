@@ -33,9 +33,6 @@ The documentation generator used to document all dojo packages.
 #### [dojo-common](https://npmjs.org/package/dojo-common)
 Basic utilities shared between packages.
 
-#### [dojo-bcrypt](https://npmjs.org/package/dojo-bcrypt)
-Optimized native bcrypt with zero dependencies. 100% typed code. Fully compatible to 'bcrypt'.
-
 #### [dojo](https://npmjs.org/package/dojo)
 Compound package of dojo, including all of the above as a single easy to use package. Also reduces redundant
 dependencies.
