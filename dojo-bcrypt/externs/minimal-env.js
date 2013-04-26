@@ -10,7 +10,18 @@
 function require(moduleName) {}
 
 /**
- * @type {{ exports: * }}
+ * @constructor
+ * @private
+ */
+var Module = function() {};
+
+/**
+ * @type {*}
+ */
+Module.prototype.exports;
+
+/**
+ * @type {Module}
  */
 var module;
 

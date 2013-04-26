@@ -15,8 +15,8 @@
     ],
     "main": "./common.js",
     "dependencies": {
-        "dojo-bcrypt": "0.1.x",
-        "node-pkginfo": "https://github.com/dcodeIO/node-pkginfo/tarball/master"
+        "dojo-colors": "0.1.x",
+        "dojo-bcrypt": "0.1.x"
     },
     "devDependencies": {
         "dojo-test": "0.1.x",

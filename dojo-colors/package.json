@@ -1,0 +1,21 @@
+{
+    "name": "dojo-colors",
+    "description": "A cored, fixed, documented and optimized version of the popular `colors.js`: Get colors in your node.js console like what",
+    "version": "0.1.0",
+    "author": "Daniel Wirtz <dcode@dcode.io>",
+    "homepage": "https://github.com/dcodeIO/dojo/tree/master/dojo-colors",
+    "bugs": "https://github.com/dcodeIO/dojo/issues",
+    "keywords": [ "ansi", "terminal", "colors" ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dcodeIO/dojo.git"
+    },
+    "engines": {
+        "node": ">=0.8"
+    },
+    "main": "./colors.min.js",
+    "scripts": {
+        "test": "node tests/test.js",
+        "compile": "ccjs colors.js --warning_level=VERBOSE --compilation_level=ADVANCED_OPTIMIZATIONS --externs=externs > colors.min.js"
+    }
+}

@@ -1,7 +1,7 @@
 /*
  Copyright (c) 2012 Nevins Bartolomeo <nevins.bartolomeo@gmail.com>
  Copyright (c) 2012 Shane Girish <shaneGirish@gmail.com>
- Copyright (c) 2013 Daniel Wirtz <dcode@dcode.io>
+ Copyright (c) 2013 The dojo authors (https://www.dojojs.org)
 
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
@@ -29,10 +29,8 @@
 /**
  * @license dojo-bcrypt (c) 2013 Daniel Wirtz <dcode@dcode.io>
  * Released under the Apache License, Version 2.0
- * see: https://github.com/dcodeIO/dojo for details
+ * see: http://www.dojojs.org for details
  */
-
-/** @expose */
 module.exports = (function() {
 
     var crypto = require("crypto");

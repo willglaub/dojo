@@ -19,3 +19,9 @@ var path = {};
  * @returns {string}
  */
 path.join = function(var_args) {};
+
+/**
+ * @param {function()} callback
+ * @param {...[*]} var_args
+ */
+function setImmediate(callback, var_args) {};

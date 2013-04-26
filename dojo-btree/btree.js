@@ -1,5 +1,5 @@
 /*
- Copyright 2013 Daniel Wirtz <dcode@dcode.io>
+ Copyright 2013 The dojo authors (http://www.dojojs.org)
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 /**
  * @license dojo-btree (c) 2013 Daniel Wirtz <dcode@dcode.io>
  * Released under the Apache License, Version 2.0
- * see: https://github.com/dcodeIO/nodebase-btree for details
+ * see: http://www.dojojs.org for details
  */
 (function(module, console) {
     'use strict';

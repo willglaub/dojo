@@ -2,8 +2,8 @@
     "name": "dojo-api",
     "description": "Simple API wrapper for dojo, the node.js application server.",
     "version": "0.1.0",
-    "author": "Daniel Wirtz <dcode@dcode.io>",
-    "main": "./api.js",
+    "author": "The dojo authors",
+    "main": "./api.min.js",
     "dependencies": {
         "dojo-common": "0.1.x"
     },
@@ -11,7 +11,8 @@
         "dojo-test": "0.1.x"
     },
     "scripts": {
-        "test": "aladojo"
+        "test": "aladojo",
+        "compile": "ccjs api.js --warning_level=VERBOSE --compilation_level=ADVANCED_OPTIMIZATIONS --externs=externs > api.min.js"
     },
     "license": "Apache-2.0"
 }

@@ -56,4 +56,5 @@ License
 -------
 All of dojo's packages are licensed under the Apache License, Version 2.0, if not stated otherwise in the sources and
 may be used for free, personally and commercially. However, if dojo is useful for you or your company, please consider
-supporting us so that we are able to continue making dojo even better and easier to use. [Contact us](mailto:dcode@dcode.io)!
+supporting us so that we are able to continue making dojo even better and easier to use.
+[Contact us](mailto:dcode@dojojs.org)!

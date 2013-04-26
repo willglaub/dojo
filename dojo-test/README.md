@@ -81,12 +81,18 @@ anything. If it does, whatever it exports will be run.
 
 Command line options
 --------------------
-| Option                     | Function                                 |
-| -------------------------- | ---------------------------------------- |
-| `--nocolors` or `-nc`      | Disables terminal colors                 |
-| `--name=NAME` or `-n=NAME` | Sets the suite name, defaults to `suite` |
 
-Example: `aladojo --name=MyGame -nc`
+| Option                     | Function
+| -------------------------- | -----------------------------------------------------------------------------------------
+| `--nocolors` or `-nc`      | Disables terminal colors.
+| `--name=NAME` or `-n=NAME` | Sets the suite name. Defaults to the name defined in package.json which is looked up
+|                            | inside of the current working directory or to the base name of the suite file if there is
+|                            | no package.json. The hard coded default is `suite`.
+| `--silent` or `-s`         | Does not produce any output.
+
+Always returns the number of failed tests as the status code.
+
+Example: `aladojo --name=MyGame -nc tests/mygame-test.js`
 
 License
 -------

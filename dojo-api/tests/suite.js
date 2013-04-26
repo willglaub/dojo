@@ -4,7 +4,7 @@ var path = require("path"),
     
 // dojo
     common = require(path.join(__dirname, '..', 'common.js')),
-    Client = require(path.join(__dirname, "..", "api.js")),
+    Client = require(path.join(__dirname, "..", "api.js")).Client,
     Test = require(path.join(__dirname, "..", "test.js")),
     
 // dojo common

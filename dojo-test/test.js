@@ -37,18 +37,6 @@ module.exports = (function() {
         fail = common.fail;
 
     /**
-     * @type {string}
-     * @private
-     */
-    var banner = [
-        '',
-        ' |_ _ _|_'.green.bold,
-        ' |_(-_)|_'.green.bold+"  à la dojo v"+pkg['version'],
-        '',
-        ''
-    ].join('\n');
-
-    /**
      * Parses a stack trace.
      * @param {string} stack
      * @returns {string}
@@ -117,6 +105,8 @@ module.exports = (function() {
         this.failed = [];
         /** @type {number} */
         this.assertions = 0;
+        /** @type {boolean} */
+        this.silent = false;
     };
 
     /**
@@ -129,7 +119,7 @@ module.exports = (function() {
         var total = this.ok.length + this.failed.length,
             taken = hrtime() - startTime;
         if (this.failed.length > 0) {
-            return this.failed.length+" of "+total+" failed ("+(taken/1000).toFixed(3)+" ms, "+this.assertions+" assertions)";
+            return this.failed.length+" of "+total+" failed ("+(taken/1000).toFixed(3)+" ms "+this.assertions+" assertions)";
         } else {
             return total+" tests ("+(taken/1000).toFixed(3)+" ms, "+this.assertions+" assertions)";
         }
@@ -141,41 +131,50 @@ module.exports = (function() {
      * @expose
      */
     Suite.banner = function() {
-        return [
-            '',
-            ' |_ _ _|_'.green.bold,
-            ' |_(-_)|_'.green.bold+"  à la dojo v"+pkg['version'],
-            '',
-            ''
-        ].join('\n');
+        return common.banner("test", "à la dojo v"+pkg['version']);
     };
 
     /**
      * Runs a bunch of tests.
      * @param {Object.<string, (function(Suite)|Object.<string, function(Suite)>)>} tests Test definitions to run
-     * @param {string=} name Top-level test suite name, defaults to 'suite'
+     * @param {(string|boolean)=} name Top-level test suite name, defaults to 'suite'
+     * @param {boolean=} silent Whether to run the tests silently or not. Defaults to `false`.
      * @expose
      */
-    Suite.run = function(tests, name) {
+    Suite.run = function(tests, name, silent) {
+        if (typeof silent == 'undefined') {
+            if (typeof name == 'boolean') {
+                silent = name;
+                name = null;
+            }
+        }
+        name = typeof name != 'undefined' ? (""+name).replace(/^dojo\-/, '') : "main";
         var suite = new Suite(tests, name);
-        process.stdout.write(Suite.banner());
+        if (!silent) process.stdout.write(Suite.banner());
+        // TODO: Not super important but Cygwin fails to report anything below but the final message?
         var startTime = hrtime();
-        suite.run(function() {
+        suite.run(silent, function() {
             if (suite.failed.length > 0) {
-                fail(suite.summarize(startTime), 'test', suite.failed.length);
+                !silent ? fail(suite.summarize(startTime), 'test', suite.failed.length) : process.exit(suite.failed.length);
             } else {
-                ok(suite.summarize(startTime), 'test');
+                !silent ? ok(suite.summarize(startTime), 'test') : process.exit(0);
             }
         });
     };
 
     /**
      * Runs all tests in the Suite.
+     * @param {(boolean|function(Suite))=} silent Whether to run the tests silently or not. Defaults ot `false`.
      * @param {function(Suite)=} callback Completion callback
      * @expose
      */
-    Suite.prototype.run = function(callback) {
+    Suite.prototype.run = function(silent, callback) {
+        if (typeof silent == 'function') {
+            callback = silent;
+            silent = false;
+        }
         this.assertions = 0;
+        this.silent = !!silent;
         
         // Wrap native assert
         for (var i in assert) {
@@ -248,9 +247,9 @@ module.exports = (function() {
              */
             function done() {
                 suite.assertions += inst.count;
-                process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, hrtime()-inst.start)+'\n');
+                if (!suite.silent) process.stdout.write(" +".green+" "+test['name'].replace(/\./g, ".".grey.bold)+stats(this, hrtime()-inst.start)+'\n');
                 suite.ok.push(test);
-                process.nextTick(next);
+                setImmediate(next);
             }
 
             /**
@@ -259,15 +258,17 @@ module.exports = (function() {
              */
             function fail(e) {
                 suite.assertions += inst.count;
-                process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, hrtime()-inst.start)+'\n');
-                process.stdout.write('\n'+parseStack(e.stack)+'\n');
-                process.stderr.write("\n");
+                if (!suite.silent) {
+                    process.stdout.write(" x".red.bold+" "+test['name'].white.bold+stats(inst, hrtime()-inst.start)+'\n');
+                    process.stdout.write('\n'+parseStack(e.stack)+'\n');
+                    process.stderr.write("\n");
+                }
                 test['error'] = e;
                 suite.failed.push(test);
-                process.nextTick(next);
+                setImmediate(next);
             }
 
-            var inst = new Test(test['name']);
+            var inst = new Test(suite, test['name']);
             inst.done = done;
             inst.start = hrtime();
             try {
@@ -305,7 +306,8 @@ module.exports = (function() {
      * @constructor
      * @extends assert
      */
-    Suite.Test = function(name) {
+    Suite.Test = function(suite, name) {
+        this.suite = suite;
         this.testName = name;
         this.count = 0;
         this.start = -1;
@@ -341,6 +343,7 @@ module.exports = (function() {
      * @expose
      */
     Suite.Test.prototype.log = function(var_args) {
+        if (this.suite.silent) return;
         var args = [' i '.cyan+this.testName+" >".cyan];
         args.push.apply(args, arguments);
         console.log.apply(console, args);

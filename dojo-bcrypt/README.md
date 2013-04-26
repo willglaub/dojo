@@ -1,7 +1,7 @@
 <img src="https://raw.github.com/dcodeIO/dojo/master/dojo-small.png" alt="dojo" /><sup>-bcrypt</sup>
 ===========
-Optimized bcrypt in plain JavaScript with zero dependencies. Gone through Closure Compiler on ADVANCED_OPTIMIZATIONS,
-100% typed code. Fully compatible to [bcrypt](https://npmjs.org/package/bcrypt) and used in [dojo](https://github.com/dcodeIO/dojo).
+Optimized bcrypt in plain JavaScript with zero dependencies. ADVANCED_OPTIMIZATIONS, 100% typed code. Fully compatible
+to [bcrypt](https://npmjs.org/package/bcrypt) and used in [dojo](https://www.dojojs.org).
 
 Usage - Sync
 ------------
@@ -160,11 +160,13 @@ Command line
 ------------
 `Usage: bcrypt <input> [salt]`
 
+If the input got spaces inside, simply surround it with quotes.
+
 Credits
 -------
-Based on work started by Shane Girish at [bcrypt-nodejs](https://github.com/shaneGirish/bcrypt-nodejs), which is itself
-based on [javascript-bcrypt](http://code.google.com/p/javascript-bcrypt/).
+Based on work started by Shane Girish at [bcrypt-nodejs](https://github.com/shaneGirish/bcrypt-nodejs) (MIT-licensed),
+which is itself based on [javascript-bcrypt](http://code.google.com/p/javascript-bcrypt/) (New BSD-licensed).
 
 License
 -------
-Apache License, Version 2.0 if not stated otherwise in the sources
+Apache License, Version 2.0 if not stated otherwise
